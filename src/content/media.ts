@@ -203,8 +203,13 @@ export const film = {
   /** Optional .vtt subtitles. Strongly recommended: much of this audience
    *  watches with the sound off, and it makes the film accessible. */
   captions: null as string | null,
-  eyebrow: 'Our journeys',
-  heading: 'A look at how we travel',
-  /** One or two lines under the heading. Replace with the client's own. */
-  body: 'A short film from MAQAAMU IBRAHIM TRAVEL AGENCY.',
+  /* The heading describes what the film ACTUALLY shows: a walk around the
+     office on Jam Street, past the wall listing the routes and services.
+     It was originally captioned "A look at how we travel", which the
+     footage does not deliver — and a caption that oversells what follows
+     costs more than it gains. Re-caption this if the client sends a
+     different film. */
+  eyebrow: 'Inside the office',
+  heading: 'Come and see us on Jam Street',
+  body: 'A walk around our office in Eastleigh — the routes we fly, the services we offer, and the people you will be dealing with.',
 } as const;
