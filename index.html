@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!--
+      The tags below are the defaults. On every route they are replaced at
+      runtime by useSeo() in src/lib/seo.ts, and they are rewritten
+      statically per route at build time by scripts/postbuild.mjs — so a
+      crawler that does not execute JavaScript still receives the correct
+      title, description, canonical URL and Open Graph data for the page it
+      requested.
+    -->
+    <title>MAQAAMU IBRAHIM TRAVEL AGENCY</title>
+    <meta
+      name="description"
+      content="MAQAAMU IBRAHIM TRAVEL AGENCY arranges travel for individuals, families and groups. Talk to a consultant about your journey."
+    />
+
+    <meta name="theme-color" content="#04070e" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!--
+      Only the SVG favicon is referenced, because it is the only icon that
+      exists. An apple-touch-icon link is deliberately absent rather than
+      pointing at a file we have not been given — see README, "Brand assets".
+    -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!--
+      Fonts are self-hosted through @fontsource-variable (bundled by Vite),
+      so there is no third-party font request to preconnect to. Nothing on
+      this page contacts an external host at runtime.
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1 style="font-size: 1.25rem">MAQAAMU IBRAHIM TRAVEL AGENCY</h1>
+        <p>This website needs JavaScript enabled. Please turn it on and reload the page.</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

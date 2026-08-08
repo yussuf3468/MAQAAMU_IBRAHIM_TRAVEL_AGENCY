@@ -1,0 +1,6 @@
+# Netlify SPA fallback.
+#
+# scripts/postbuild.mjs writes a real HTML file for every static route, so
+# those are served directly with their own <head>. This rule catches the
+# dynamic ones (/services/:slug and friends) and hands them to the app.
+/*    /index.html   200

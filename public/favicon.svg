@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MAQAAMU IBRAHIM TRAVEL AGENCY">
+  <!--
+    TEMPORARY FAVICON — replace when the client supplies brand assets.
+    Deliberately a plain letterform on the brand ink colour rather than an
+    invented emblem: a mark of that kind would circulate as if it were the
+    agency's official logo.
+  -->
+  <rect width="64" height="64" rx="6" fill="#04070E" />
+  <rect x="6" y="6" width="52" height="52" rx="3" fill="none" stroke="#0E8F94" stroke-width="1.25" opacity="0.55" />
+  <text
+    x="32"
+    y="44"
+    text-anchor="middle"
+    font-family="Iowan Old Style, Palatino Linotype, Georgia, serif"
+    font-size="34"
+    fill="#F8FAFB"
+  >M</text>
+</svg>

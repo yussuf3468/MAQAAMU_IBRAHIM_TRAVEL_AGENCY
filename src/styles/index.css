@@ -1,0 +1,419 @@
+@import 'tailwindcss';
+
+/* Self-hosted variable fonts — no external network requests. */
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/inter/index.css';
+
+/* =========================================================================
+   MAQAAMU IBRAHIM TRAVEL AGENCY — DESIGN SYSTEM
+   -------------------------------------------------------------------------
+   A single source of truth for colour, type, space, radii, shadow, motion.
+   Every component in this project consumes these tokens. Changing a token
+   here changes the whole site — this is the layer the client's brand
+   guidelines drop into once they are supplied.
+   ========================================================================= */
+
+@theme {
+  /* ---------------------------------------------------------------------
+     COLOUR — "Midnight & Aegean"
+     -------------------------------------------------------------------
+     The palette is built from three things a traveller actually sees:
+     the blue-black of a night flight, the cool light of an early
+     departure hall, and the colour of water seen from above.
+
+     Ink       blue-black. Text on light, and the ground of night sections.
+     Porcelain cool off-white. The site's default surface — never pure
+               #fff, which glares on a phone in daylight.
+     Aegean    the single accent. Deep sea-teal: distinctive, unmistakably
+               travel, and dark enough to pass contrast as small text.
+     Azure     a supporting depth colour for imagery and gradients only.
+
+     One accent, used sparingly. No warm browns, no gradient washes, no
+     second competing hue — the photography supplies the warmth.
+     --------------------------------------------------------------------- */
+  /* CONTRAST IS DELIBERATE, NOT DECORATIVE.
+     Every text colour below was measured against the porcelain surface.
+     The pale-grey-on-near-white look that is fashionable in design tools
+     is unreadable on a phone in daylight, which is where most of this
+     audience will read the site.
+
+       ink-900 on porcelain-50  → 16.5:1   headings
+       ink-700 on porcelain-50  → 12.1:1   emphasis
+       ink-600 on porcelain-50  →  8.6:1   body copy
+       ink-500 on porcelain-50  →  6.4:1   secondary copy
+       ink-400 on porcelain-50  →  4.7:1   labels — the AA floor, no lower
+       ink-300                  → decorative rules and icons ONLY, never text
+
+     The surface itself is a shade below white for the same reason: pure
+     #fff glares, and glare is what makes dark text feel hard to read. */
+  --color-ink-950: #04070e;
+  --color-ink-900: #0a1424;
+  --color-ink-800: #142033;
+  --color-ink-700: #1d2c42;
+  --color-ink-600: #33455e;
+  --color-ink-500: #4a5c75;
+  --color-ink-400: #5c6d87;
+  --color-ink-300: #8b9bb1;
+  --color-ink-200: #c2ccda;
+
+  --color-porcelain-50: #f6f8fb;
+  --color-porcelain-100: #eaeff5;
+  --color-porcelain-200: #dce4ee;
+  --color-porcelain-300: #c5d0de;
+  --color-porcelain-400: #a8b6c8;
+
+  --color-aegean-200: #a8e6e4;
+  --color-aegean-300: #66cfce;
+  --color-aegean-400: #29afb2;
+  --color-aegean-500: #0e8f94;
+  --color-aegean-600: #0a7278;
+  --color-aegean-700: #075a60;
+  --color-aegean-800: #054a50;
+
+  --color-azure-400: #5c7fb8;
+  --color-azure-600: #2f4f80;
+  --color-azure-800: #1a2f52;
+  --color-azure-900: #101d36;
+
+  /* Semantic aliases — prefer these in components */
+  --color-surface: var(--color-porcelain-50);
+  --color-surface-sunk: var(--color-porcelain-100);
+  --color-surface-raised: #ffffff;
+  --color-surface-night: var(--color-ink-950);
+  --color-content: var(--color-ink-900);
+  --color-content-muted: var(--color-ink-500);
+  --color-content-subtle: var(--color-ink-400);
+  /* 500 is the decorative accent; 700 is the one used for small text,
+     because it clears 4.5:1 on the porcelain ground and 500 does not. */
+  --color-accent: var(--color-aegean-500);
+  --color-accent-text: var(--color-aegean-700);
+  --color-accent-soft: var(--color-aegean-300);
+  --color-line: #dfe5ec;
+  --color-line-strong: #c6d0da;
+  --color-line-night: rgb(255 255 255 / 0.14);
+  --color-danger: #b4302a;
+  --color-danger-line: #d08b85;
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY
+     Display : Fraunces Variable — editorial serif, optical sizing
+     Body    : Inter Variable — quiet, highly legible
+     --------------------------------------------------------------------- */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype',
+    'Times New Roman', serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Fluid type scale. Every size is clamped so nothing breaks at 320px
+     and nothing bloats past 1920px. */
+  --text-display-xl: clamp(2.75rem, 1.6rem + 5.8vw, 6.25rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.028em;
+
+  --text-display-lg: clamp(2.25rem, 1.45rem + 3.9vw, 4.5rem);
+  --text-display-lg--line-height: 1.02;
+  --text-display-lg--letter-spacing: -0.024em;
+
+  --text-display-md: clamp(1.875rem, 1.35rem + 2.4vw, 3.125rem);
+  --text-display-md--line-height: 1.08;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --text-display-sm: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-display-sm--line-height: 1.14;
+  --text-display-sm--letter-spacing: -0.016em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.42vw, 1.3125rem);
+  --text-lead--line-height: 1.62;
+  --text-lead--letter-spacing: -0.006em;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.72;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.62;
+
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.16em;
+
+  /* ---------------------------------------------------------------------
+     SPACE — vertical rhythm for sections
+     --------------------------------------------------------------------- */
+  --spacing-section: clamp(4.5rem, 2.5rem + 7vw, 9.5rem);
+  --spacing-section-sm: clamp(3rem, 2rem + 4vw, 6rem);
+  --spacing-gutter: clamp(1.25rem, 0.75rem + 2.2vw, 3.5rem);
+
+  /* ---------------------------------------------------------------------
+     RADII — restrained. Editorial, not bubbly.
+     --------------------------------------------------------------------- */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* ---------------------------------------------------------------------
+     ELEVATION — soft, blue-tinted, never neutral grey
+     --------------------------------------------------------------------- */
+  --shadow-raise: 0 1px 2px rgb(9 16 28 / 0.04), 0 8px 24px -12px rgb(9 16 28 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(9 16 28 / 0.05), 0 22px 48px -20px rgb(9 16 28 / 0.24);
+  --shadow-float: 0 30px 70px -32px rgb(9 16 28 / 0.42);
+
+  /* ---------------------------------------------------------------------
+     MOTION — one easing family, three durations. Nothing bounces.
+     --------------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration-base: 380ms;
+  --duration-slow: 720ms;
+
+  /* Layout */
+  --container-content: 78rem;
+  --container-prose: 44rem;
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Header height + breathing room, so anchor jumps are never clipped. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-content);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-variation-settings: 'opsz' 48;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, on-brand focus ring for every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--color-aegean-600);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Remove the ring for mouse users only, never for keyboard users. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--color-aegean-200);
+    color: var(--color-ink-950);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Honour the OS-level reduced-motion setting everywhere, including any
+     CSS animation a component defines locally. Framer Motion is handled
+     separately in src/lib/motion.ts. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* =========================================================================
+   COMPONENT PRIMITIVES
+   Only patterns reused in many places live here. Everything else is a
+   React component with Tailwind utilities.
+   ========================================================================= */
+
+@layer components {
+  /* Optical sizing helpers for the display face -------------------------- */
+  .font-display-tight {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144;
+  }
+
+  .font-display-text {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 14;
+  }
+
+  /* The small uppercase label used above section headings ---------------- */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-micro);
+    line-height: var(--text-micro--line-height);
+    letter-spacing: var(--text-micro--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Editorial rule used to separate sections ---------------------------- */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-line-strong) 12%,
+      var(--color-line-strong) 88%,
+      transparent
+    );
+  }
+
+  /* Long-form body copy ------------------------------------------------- */
+  .prose-editorial {
+    max-width: var(--container-prose);
+    font-size: var(--text-lead);
+    line-height: var(--text-lead--line-height);
+    color: var(--color-ink-700);
+  }
+
+  .prose-editorial > * + * {
+    margin-top: 1.25em;
+  }
+
+  /* Underline that draws in on hover, used on text links ---------------- */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size var(--duration-base) var(--ease-out-expo);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-underline {
+      transition: none;
+    }
+  }
+}
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+
+@layer utilities {
+  /* Film-grain overlay. Applied to large imagery and night sections to
+     stop flat colour from looking digital. Pure CSS, zero bytes of image. */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+
+  /* Bottom-up scrim so white text stays legible over any photograph. */
+  .scrim-bottom::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgb(4 7 14 / 0.86) 0%,
+      rgb(4 7 14 / 0.55) 32%,
+      rgb(4 7 14 / 0.12) 66%,
+      rgb(4 7 14 / 0) 100%
+    );
+  }
+
+  .scrim-full::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgb(4 7 14 / 0.9) 0%,
+      rgb(4 7 14 / 0.62) 40%,
+      rgb(4 7 14 / 0.4) 72%,
+      rgb(4 7 14 / 0.45) 100%
+    );
+  }
+
+  /* Screen-reader-only text that becomes visible when focused. */
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Responsive aspect ratio driven by two custom properties, set inline by
+     <EditorialImage>. Lets a picture take a tall crop on phones and a wide
+     one from `sm` up, without a second render path or an injected style. */
+  .aspect-responsive {
+    aspect-ratio: var(--aspect-mobile, var(--aspect-base));
+  }
+
+  @media (min-width: 40rem) {
+    .aspect-responsive {
+      aspect-ratio: var(--aspect-base);
+    }
+  }
+
+  /* Safe-area padding for the fixed mobile contact bar on notched phones. */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .h-safe-bar {
+    height: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
