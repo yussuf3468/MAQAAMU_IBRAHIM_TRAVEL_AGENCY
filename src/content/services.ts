@@ -114,7 +114,7 @@ export const services: Service[] = [
       },
     ],
     icon: 'route',
-    image: { slot: 'service.hajj', src: null, alt: 'Worshippers filling the courtyard of the Masjid al-Haram in Makkah.', tone: 'dusk', focal: 'center' },
+    image: { slot: 'service.hajj', src: null, alt: 'Hotel towers rising above the Masjid al-Haram in Makkah.', tone: 'dusk', focal: 'center' },
     featured: true,
     status: 'confirmed',
   },
@@ -156,8 +156,173 @@ export const services: Service[] = [
       },
     ],
     icon: 'plane',
-    image: { slot: 'service.air-ticketing', src: null, alt: 'The wing of an aircraft above the clouds.', tone: 'dawn', focal: 'center' },
+    image: { slot: 'service.air-ticketing', src: null, alt: 'An airport departure board showing flight information.', tone: 'dawn', focal: 'center' },
     featured: true,
+    status: 'confirmed',
+  },
+
+  {
+    slug: 'local-flights',
+    title: 'Local flights',
+    eyebrow: 'Domestic routes',
+    summary:
+      'Domestic flights booked and ticketed — the short hops within the country, handled by the same office as the long ones.',
+    description: [
+      'We book and issue tickets for domestic flights as well as international ones. It is the same office, the same people and the same care whether you are flying across the country or across the world.',
+      'Tell us where you need to be and when. We will come back with the options and issue the ticket once you are happy with it.',
+    ],
+    includes: [
+      'Domestic flight booking and ticketing',
+      'One-way and return tickets',
+      'Advice on routes and timings before you book',
+      'Changes handled by the office, not a call centre',
+    ],
+    audience: [
+      'Travellers flying within the country',
+      'Business travellers',
+      'Families and groups booking together',
+      'Anyone connecting onto an international flight',
+    ],
+    process: [
+      {
+        title: 'Tell us the route and date',
+        body: 'Call or WhatsApp the office with where you are going and when.',
+      },
+      {
+        title: 'We check what is available',
+        body: 'We come back with the options and what each one costs.',
+      },
+      {
+        title: 'Ticket issued',
+        body: 'Once you confirm, we issue the ticket and send it to you.',
+      },
+    ],
+    icon: 'plane',
+    image: {
+      slot: 'service.local-flights',
+      src: null,
+      alt: 'A passenger aircraft on the apron at sunrise.',
+      tone: 'dawn',
+      focal: 'center',
+    },
+    featured: false,
+    status: 'confirmed',
+  },
+
+  /* -----------------------------------------------------------------------
+     RUQYAH TREATMENT TRAVEL
+     Confirmed by the client: "they also take people with jinn and sixr and
+     get treated there" — cilaaj iyo sixir.
+
+     THE LINE THIS PAGE DOES NOT CROSS, and must not:
+     The agency arranges the TRAVEL. It does not perform the ruqyah, and
+     nothing here promises a cure, a result or a timeframe. That is the
+     same discipline applied to the visa page — we describe what the agency
+     actually does and leave the outcome to the people responsible for it.
+     A promise of healing on a travel agency's website would be both untrue
+     and, for someone in distress, cruel.
+
+     Tone matters here more than anywhere else on the site: people reading
+     this page are often worried about someone they love. It is written
+     plainly and without drama, and it says the arrangements are discreet
+     because that is what such travellers ask for.
+     ----------------------------------------------------------------------- */
+  {
+    slug: 'ruqyah-treatment-travel',
+    title: 'Ruqyah treatment travel',
+    eyebrow: 'Cilaaj iyo sixir',
+    summary:
+      'Travel arranged for those seeking ruqyah — the visa, the flight, somewhere to stay and the transport to and from the treatment.',
+    description: [
+      'Some travellers come to us for one particular reason: they are seeking ruqyah, for themselves or for someone in their family, and they need to reach the people who provide it. We arrange that journey.',
+      'Our part is the travel. We process the visa, issue the ticket, book accommodation close to where the treatment takes place, and arrange the transport between them. The treatment itself is carried out by the practitioners — we do not perform it, and we do not make promises about what it will achieve.',
+      'These arrangements are handled discreetly. Speak to the office and we will explain what is involved, what it costs, and how long people usually stay.',
+    ],
+    includes: [
+      'Visa processing',
+      'Return air ticket',
+      'Accommodation close to the treatment',
+      'Transport to and from appointments',
+      'One person at the office looking after the arrangements throughout',
+    ],
+    audience: [
+      'Travellers seeking ruqyah for sixir or for jinn',
+      'Families travelling with someone who is unwell',
+      'Travellers who would rather this was arranged quietly',
+      'Anyone who wants the journey handled so they can concentrate on the reason for it',
+    ],
+    process: [
+      {
+        title: 'Speak to us in confidence',
+        body: 'Tell us who is travelling and what is needed. Nothing is discussed outside the office.',
+      },
+      {
+        title: 'We arrange the journey',
+        body: 'Visa, ticket, accommodation near the treatment and transport between them — confirmed before you travel.',
+      },
+      {
+        title: 'We stay reachable',
+        body: 'You have someone at the office to call for as long as you are away.',
+      },
+    ],
+    icon: 'shield',
+    image: {
+      slot: 'service.ruqyah-treatment-travel',
+      src: null,
+      alt: 'A copy of the Qur’an bound in blue and gold, with prayer beads and a prayer rug beside it.',
+      tone: 'aurora',
+      focal: 'center',
+    },
+    featured: false,
+    status: 'confirmed',
+  },
+
+  {
+    slug: 'disability-care',
+    title: 'Disability care',
+    eyebrow: 'Assisted travel',
+    summary:
+      'Travel arranged around what you need — assistance at the airport, on arrival, and throughout the journey.',
+    description: [
+      'Travelling with a disability, or with someone who needs assistance, should not mean travelling with less care. We arrange journeys around what you actually need rather than around what is standard.',
+      'Tell us what assistance is required — mobility, wheelchair support at the airport, help through immigration, accessible accommodation, or someone on hand throughout — and we will make the arrangements and confirm them before you travel.',
+      'This applies to Umrah and Hajj as much as to any other journey. Talk to the office early so there is time to arrange everything properly.',
+    ],
+    includes: [
+      'Assistance arranged at the airport',
+      'Wheelchair and mobility support requested with the airline',
+      'Accommodation chosen for accessibility',
+      'Support through the journey, arranged in advance',
+    ],
+    audience: [
+      'Travellers with reduced mobility',
+      'Elderly pilgrims',
+      'Families travelling with someone who needs assistance',
+      'Anyone who needs support arranged before departure',
+    ],
+    process: [
+      {
+        title: 'Tell us what is needed',
+        body: 'Explain the assistance required. The more we know, the more we can arrange in advance.',
+      },
+      {
+        title: 'We make the arrangements',
+        body: 'We request assistance with the airline, choose accommodation that suits, and arrange transport accordingly.',
+      },
+      {
+        title: 'Confirmed before you travel',
+        body: 'You know what has been arranged before you leave, and the office stays reachable while you are away.',
+      },
+    ],
+    icon: 'users',
+    image: {
+      slot: 'service.disability-care',
+      src: null,
+      alt: 'An empty airport concourse with wide, level walkways.',
+      tone: 'alpine',
+      focal: 'center',
+    },
+    featured: false,
     status: 'confirmed',
   },
 

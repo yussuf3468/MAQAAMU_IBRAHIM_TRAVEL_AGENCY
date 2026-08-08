@@ -184,7 +184,12 @@ export function EnquiryForm({ className }: { className?: string }) {
         </div>
       )}
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <p className="text-[0.875rem] text-ink-600">{enquiryCopy.requiredNote}</p>
+
+      {/* `items-start` matters: without it a field carrying help text
+          stretches its neighbour to match, and the row stops looking like
+          a row. */}
+      <div className="grid items-start gap-x-6 gap-y-5 sm:grid-cols-2">
         {fields.map((field) => (
           <FieldRenderer
             key={field.name}
@@ -266,8 +271,9 @@ function FieldRenderer({
     onBlur,
   };
 
-  // Fields that need the full row.
-  const fullWidth = field.type === 'textarea' || field.name === 'service';
+  // The column span comes from the field config, so the layout is decided
+  // in content/enquiry.ts alongside the field order rather than here.
+  const span = cn((field.span ?? 'half') === 'full' && 'sm:col-span-2');
 
   if (field.type === 'textarea') {
     return (
@@ -275,7 +281,7 @@ function FieldRenderer({
         {...shared}
         placeholder={field.placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className="sm:col-span-2"
+        className={span}
       />
     );
   }
@@ -287,7 +293,7 @@ function FieldRenderer({
         {...shared}
         options={options}
         onChange={(event) => onChange(event.target.value)}
-        className={cn(fullWidth && 'sm:col-span-2')}
+        className={span}
       />
     );
   }
@@ -301,6 +307,7 @@ function FieldRenderer({
       min={field.type === 'date' ? todayIso() : field.type === 'number' ? 1 : undefined}
       inputMode={field.type === 'number' ? 'numeric' : undefined}
       onChange={(event) => onChange(event.target.value)}
+      className={span}
     />
   );
 }

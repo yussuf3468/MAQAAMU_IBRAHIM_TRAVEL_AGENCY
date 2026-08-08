@@ -50,17 +50,22 @@ function FieldShell({
 }: FieldShellProps) {
   return (
     <div className={cn('flex flex-col gap-2', className)}>
+      {/* Only REQUIRED fields are marked, and with a single character.
+          Labelling every optional field "OPTIONAL" put a shouting caps tag
+          beside almost every input and made the form look like a tax
+          return. The form's intro line says what is required instead. */}
       <label
         htmlFor={htmlFor}
-        className="flex items-baseline gap-2 font-sans text-[0.8125rem] font-medium tracking-[0.02em] text-ink-700"
+        className="font-sans text-[0.8125rem] font-medium tracking-[0.02em] text-ink-700"
       >
         {label}
-        {required ? (
-          <span className="text-[0.6875rem] tracking-[0.1em] text-aegean-700 uppercase">
-            Required
-          </span>
-        ) : (
-          <span className="text-[0.6875rem] tracking-[0.1em] text-ink-500 uppercase">Optional</span>
+        {required && (
+          <>
+            <span aria-hidden="true" className="ml-1 text-aegean-600">
+              *
+            </span>
+            <span className="sr-only"> (required)</span>
+          </>
         )}
       </label>
 

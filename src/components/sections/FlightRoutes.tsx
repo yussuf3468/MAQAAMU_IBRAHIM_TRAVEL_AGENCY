@@ -1,6 +1,7 @@
 import { Plane } from 'lucide-react';
+import { cn } from '@/lib/cn';
 import { copy, publishable } from '@/content';
-import { departureCity, flightRoutes } from '@/content/routes';
+import { departureCity, flightRoutes, localRoutes } from '@/content/routes';
 import { Container, Section, SectionHeading } from '@/components/ui/Layout';
 import { Button } from '@/components/ui/Button';
 import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal';
@@ -23,7 +24,8 @@ import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal';
 
 export function FlightRoutes({ tone = 'sunk' }: { tone?: 'default' | 'sunk' | 'night' }) {
   const routes = publishable(flightRoutes);
-  if (routes.length === 0) return null;
+  const local = publishable(localRoutes);
+  if (routes.length === 0 && local.length === 0) return null;
 
   const onDark = tone === 'night';
 
@@ -79,9 +81,46 @@ export function FlightRoutes({ tone = 'sunk' }: { tone?: 'default' | 'sunk' | 'n
           ))}
         </RevealGroup>
 
+        {/* Domestic routes, from the office banner. Rendered as chips rather
+            than a second long list — there are fewer of them, they are one
+            word each, and a chip row reads as "and these too" instead of
+            competing with the international column above. */}
+        {local.length > 0 && (
+          <Reveal className="mt-14">
+            <h3
+              className={cn(
+                'eyebrow flex items-center gap-3',
+                onDark ? 'text-aegean-300' : 'text-aegean-700',
+              )}
+            >
+              <span
+                aria-hidden="true"
+                className={cn('h-px w-8', onDark ? 'bg-aegean-300/60' : 'bg-aegean-500/50')}
+              />
+              Local flights from {departureCity}
+            </h3>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {local.map((route) => (
+                <li
+                  key={route.name}
+                  className={cn(
+                    'rounded-[2px] border px-3.5 py-2 text-[0.875rem]',
+                    onDark
+                      ? 'border-white/15 bg-white/[0.04] text-porcelain-100'
+                      : 'border-line bg-surface-raised text-ink-700',
+                  )}
+                >
+                  {route.name}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        )}
+
         <Reveal>
           <p className={`mt-8 text-small ${onDark ? 'text-porcelain-200/76' : 'text-ink-600'}`}>
-            All routes shown depart from {departureCity}. Domestic flights are booked too.
+            All routes depart from {departureCity}. If your destination is not listed, ask us — we
+            ticket more than we can fit on a wall.
           </p>
         </Reveal>
       </Container>

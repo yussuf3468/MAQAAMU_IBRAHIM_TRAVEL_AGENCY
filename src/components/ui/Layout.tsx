@@ -11,10 +11,13 @@ import { cn } from '@/lib/cn';
 
 type ContainerWidth = 'prose' | 'content' | 'wide' | 'full';
 
+/* Read from CSS custom properties rather than fixed rem values, so the
+   large-screen block in styles/index.css can widen every container on the
+   site at once. See the LARGE SCREENS note there. */
 const widths: Record<ContainerWidth, string> = {
-  prose: 'max-w-[44rem]',
-  content: 'max-w-[78rem]',
-  wide: 'max-w-[92rem]',
+  prose: 'max-w-[var(--container-prose)]',
+  content: 'max-w-[var(--container-content)]',
+  wide: 'max-w-[var(--container-wide)]',
   full: 'max-w-none',
 };
 

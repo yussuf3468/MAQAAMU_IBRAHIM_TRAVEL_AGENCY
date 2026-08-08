@@ -1,47 +1,52 @@
-import { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { copy, resolved } from '@/content';
 import { Button } from '@/components/ui/Button';
 
 /* =========================================================================
-   OFFICE MAP
+   OFFICE ADDRESS AND MAP
    -------------------------------------------------------------------------
-   The address in writing AND on a map, because people use both: one to
-   read out to a taxi driver, one to walk in with.
+   Two exported pieces, because they belong in different places on the page:
 
-   PRIVACY AND PERFORMANCE — WHY IT DOES NOT LOAD IMMEDIATELY
-   A Google Maps iframe is roughly 1.5 MB of third-party JavaScript and it
-   sets cookies for every visitor, whether or not they ever look at it. So
-   the map renders as a still, branded panel and only loads the real
-   embed when someone asks for it. Nothing is requested from Google until
-   that click.
+     <OfficeAddress />  the address in writing, plus the directions line and
+                        the "open in Google Maps" button. Sits in a column
+                        beside the opening hours.
 
-   That also means the contact page — the page most likely to be opened in
-   a hurry, on mobile data, standing outside — stays fast.
+     <OfficeMapEmbed /> the interactive map, rendered full width beneath —
+                        a map squeezed into half a column is unusable on a
+                        phone, and this is the element people pinch, drag
+                        and zoom.
 
-   The written address above it is never behind that click.
+   The map is a live Google embed rather than a click-to-load placeholder:
+   someone on this page is trying to find the office, and making them press
+   a button first is friction for no benefit. `loading="lazy"` keeps it off
+   the critical path so the page still loads fast.
+
+   The address is always readable as text — never only on the map — because
+   it has to be copyable, and read aloud to a taxi driver.
    ========================================================================= */
 
-export function OfficeMap({ className }: { className?: string }) {
-  const [loaded, setLoaded] = useState(false);
+function addressLines() {
   const address = resolved.address;
-
   if (!address || address.status !== 'confirmed') return null;
 
   const lines = [
     address.streetAddress,
-    address.locality,
-    address.region,
+    [address.region, address.locality].filter(Boolean).join(', ') || null,
     address.postalCode,
     address.country,
   ].filter((line): line is string => Boolean(line));
 
-  if (lines.length === 0) return null;
+  return lines.length > 0 ? { address, lines } : null;
+}
+
+export function OfficeAddress({ className }: { className?: string }) {
+  const data = addressLines();
+  if (!data) return null;
+  const { address, lines } = data;
 
   return (
-    <div className={cn('flex flex-col gap-5', className)}>
-      {/* The address, always readable, never behind an interaction. */}
+    <div className={cn('flex flex-col gap-6', className)}>
       <address className="flex items-start gap-3 text-lead leading-relaxed text-ink-700 not-italic">
         <MapPin
           className="mt-1.5 size-5 shrink-0 text-aegean-600"
@@ -55,55 +60,10 @@ export function OfficeMap({ className }: { className?: string }) {
             </span>
           ))}
           {address.directions && (
-            <span className="mt-1 block text-[0.9375rem] text-ink-600">{address.directions}</span>
+            <span className="mt-2 block text-[0.9375rem] text-ink-600">{address.directions}</span>
           )}
         </span>
       </address>
-
-      {address.mapEmbedUrl && (
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[3px] border border-line bg-porcelain-200 sm:aspect-[16/10]">
-          {loaded ? (
-            <iframe
-              title="Map showing the location of the MAQAAMU IBRAHIM TRAVEL AGENCY office"
-              src={address.mapEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-              className="absolute inset-0 size-full border-0"
-            />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setLoaded(true)}
-              className={cn(
-                'group absolute inset-0 flex flex-col items-center justify-center gap-4',
-                'bg-ink-950 text-porcelain-50 transition-colors duration-300',
-              )}
-            >
-              {/* A quiet abstract of a street grid — no third-party request,
-                  and no pretence that it is the real map. */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 opacity-[0.18]"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(to right, #66cfce 1px, transparent 1px), linear-gradient(to bottom, #66cfce 1px, transparent 1px), linear-gradient(115deg, transparent 46%, #66cfce 46%, #66cfce 47.5%, transparent 47.5%)',
-                  backgroundSize: '46px 46px, 46px 46px, 100% 100%',
-                }}
-              />
-              <span className="relative z-10 grid size-12 place-items-center rounded-full border border-white/25 bg-white/5 transition-colors duration-300 group-hover:border-white/50">
-                <MapPin className="size-5" strokeWidth={1.5} aria-hidden="true" />
-              </span>
-              <span className="relative z-10 flex flex-col items-center gap-1">
-                <span className="text-[0.9375rem] font-medium">Show the map</span>
-                <span className="text-small text-porcelain-200/76">
-                  Loads Google Maps
-                </span>
-              </span>
-            </button>
-          )}
-        </div>
-      )}
 
       {address.mapUrl && (
         <Button
@@ -117,6 +77,32 @@ export function OfficeMap({ className }: { className?: string }) {
           {copy.contact.mapCta}
         </Button>
       )}
+    </div>
+  );
+}
+
+export function OfficeMapEmbed({ className }: { className?: string }) {
+  const address = resolved.address;
+  if (!address || address.status !== 'confirmed' || !address.mapEmbedUrl) return null;
+
+  return (
+    <div
+      className={cn(
+        'relative w-full overflow-hidden rounded-[3px] border border-line bg-porcelain-200',
+        // Taller on phones so the streets around the office are legible,
+        // wider on desktop where there is room for context.
+        'h-[22rem] sm:h-[26rem] lg:h-[30rem]',
+        className,
+      )}
+    >
+      <iframe
+        title="Map showing the location of the MAQAAMU IBRAHIM TRAVEL AGENCY office on Jam Street, Hodo Souk, Eastleigh, Nairobi"
+        src={address.mapEmbedUrl}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+        className="absolute inset-0 size-full border-0"
+      />
     </div>
   );
 }

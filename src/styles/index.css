@@ -168,9 +168,16 @@
   --duration-base: 380ms;
   --duration-slow: 720ms;
 
-  /* Layout */
-  --container-content: 78rem;
+  /* Layout — consumed by <Container>. These widen on very large screens;
+     see the LARGE SCREENS block below. */
   --container-prose: 44rem;
+  --container-content: 78rem;
+  --container-wide: 92rem;
+
+  /* Breakpoints beyond Tailwind's 2xl (96rem), for the handful of grids
+     that genuinely gain a column on a very wide display. */
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
 }
 
 /* =========================================================================
@@ -189,6 +196,71 @@
     scroll-behavior: smooth;
     /* Header height + breathing room, so anchor jumps are never clipped. */
     scroll-padding-top: 6rem;
+  }
+
+  /* =====================================================================
+     LARGE SCREENS
+     ---------------------------------------------------------------------
+     On a 27" monitor, an ultrawide or a 4K display, a site pinned to a
+     1472px column with everything sized for a laptop does not read as
+     "generous" — it reads as a small website floating in the middle of an
+     expensive screen, with body copy the size of a footnote.
+
+     Two levers, both applied here and nowhere else:
+
+     1. THE ROOT FONT SIZE. Every size in this project is expressed in rem
+        — type, spacing, radii, control heights, even the container widths
+        — so raising the root scales the entire design system together and
+        keeps every proportion intact. One declaration does what a hundred
+        `3xl:` classes would.
+
+     2. THE CONTAINER WIDTHS, so the larger type has somewhere to go rather
+        than simply reflowing into the same column.
+
+     The steps are deliberately gentle. Doubling the type on a 4K screen
+     would be as wrong as leaving it alone: the viewer also sits further
+     back, and the goal is a site that feels made for the screen, not one
+     that shouts.
+
+     Media-query rem is resolved against the initial 16px root, not the
+     value set here, so these thresholds are stable — but they are written
+     in px anyway to leave no doubt.
+     ===================================================================== */
+
+  /* From ~1800px — large desktop monitors. */
+  @media (min-width: 1800px) {
+    html {
+      font-size: 17.5px;
+    }
+
+    :root {
+      --container-content: 82rem;
+      --container-wide: 98rem;
+    }
+  }
+
+  /* From ~2400px — 27"+ displays and most ultrawides. */
+  @media (min-width: 2400px) {
+    html {
+      font-size: 19px;
+    }
+
+    :root {
+      --container-content: 86rem;
+      --container-wide: 106rem;
+    }
+  }
+
+  /* From ~3200px — 4K and super-ultrawide. */
+  @media (min-width: 3200px) {
+    html {
+      font-size: 21px;
+    }
+
+    :root {
+      --container-content: 90rem;
+      --container-wide: 114rem;
+    }
   }
 
   body {
@@ -364,6 +436,10 @@
     );
   }
 
+  /* Full-bleed scrim for hero bands. The top stop is heavier than a
+     designer's instinct suggests, because the fixed header's white wordmark
+     sits in that band — and a pale sky in the photograph is exactly where
+     it would otherwise disappear. */
   .scrim-full::before {
     content: '';
     position: absolute;
@@ -371,10 +447,10 @@
     pointer-events: none;
     background: linear-gradient(
       to top,
-      rgb(4 7 14 / 0.9) 0%,
-      rgb(4 7 14 / 0.62) 40%,
-      rgb(4 7 14 / 0.4) 72%,
-      rgb(4 7 14 / 0.45) 100%
+      rgb(4 7 14 / 0.92) 0%,
+      rgb(4 7 14 / 0.66) 38%,
+      rgb(4 7 14 / 0.46) 68%,
+      rgb(4 7 14 / 0.62) 100%
     );
   }
 

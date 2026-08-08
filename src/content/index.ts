@@ -18,7 +18,7 @@ export { modules, isModuleEnabled } from './modules';
 export type { ModuleName } from './modules';
 
 export { services, getServiceBySlug, serviceOptions } from './services';
-export { flightRoutes, departureCity } from './routes';
+export { flightRoutes, localRoutes, departureCity } from './routes';
 export type { FlightRoute } from './routes';
 export { destinations, getDestinationBySlug, destinationOptions } from './destinations';
 export { travelPackages, getPackageBySlug } from './packages';

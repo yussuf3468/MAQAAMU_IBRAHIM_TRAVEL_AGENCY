@@ -64,7 +64,7 @@ export function Header() {
             : 'border-b border-line/80 bg-surface/85 backdrop-blur-md supports-[backdrop-filter]:bg-surface/75',
         )}
       >
-        <div className="mx-auto flex h-[4.5rem] w-full max-w-[92rem] items-center justify-between px-gutter lg:h-20">
+        <div className="mx-auto flex h-[4.5rem] w-full max-w-[var(--container-wide)] items-center justify-between px-gutter lg:h-20">
           <Wordmark onDark={transparent} size="md" />
 
           <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">

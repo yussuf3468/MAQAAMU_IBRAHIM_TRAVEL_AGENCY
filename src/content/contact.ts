@@ -62,12 +62,12 @@ export const contactChannels: ContactChannel[] = [
    ------------------------------------------------------------------------- */
 
 export const address: PostalAddress = {
-  streetAddress: 'Jam Street, Hodo Souk',
+  streetAddress: 'Jam Street, Hodo Souk, 2nd Floor, S26',
+  region: 'Eastleigh',
   locality: 'Nairobi',
-  region: null,
   postalCode: null,
   country: 'Kenya',
-  directions: 'Second floor, shop S26.',
+  directions: 'Second floor of Hodo Souk, shop S26.',
 
   /* MAP — a SEARCH link, not a dropped pin.
      We have a street and a building but no coordinates and no Google
@@ -81,9 +81,9 @@ export const address: PostalAddress = {
      into `mapUrl`, and paste the iframe URL from Share → Embed a map into
      `mapEmbedUrl`. Nothing else needs to change. */
   mapUrl:
-    'https://www.google.com/maps/search/?api=1&query=Hodo+Souk%2C+Jam+Street%2C+Nairobi',
+    'https://www.google.com/maps/search/?api=1&query=Hodo+Souk%2C+Jam+Street%2C+Eastleigh%2C+Nairobi',
   mapEmbedUrl:
-    'https://www.google.com/maps?q=Hodo+Souk%2C+Jam+Street%2C+Nairobi&output=embed',
+    'https://www.google.com/maps?q=Hodo+Souk%2C+Jam+Street%2C+Eastleigh%2C+Nairobi&z=16&output=embed',
 
   status: 'confirmed',
 };
@@ -126,9 +126,17 @@ export const openingHours: OpeningHours[] = [
    ------------------------------------------------------------------------- */
 
 export const socialLinks: SocialLink[] = [
+  {
+    platform: 'tiktok',
+    label: 'TikTok',
+    // Tracking parameters (_r, _t) are stripped: they are tied to the
+    // session that generated the share link and are meaningless — often
+    // broken — for anyone else. The bare profile URL is the durable one.
+    href: 'https://www.tiktok.com/@maqamuibrahimtravelagen1',
+    status: 'confirmed',
+  },
   { platform: 'facebook', label: 'Facebook', href: null, status: 'awaiting-client' },
   { platform: 'instagram', label: 'Instagram', href: null, status: 'awaiting-client' },
-  { platform: 'tiktok', label: 'TikTok', href: null, status: 'awaiting-client' },
 ];
 
 /* -------------------------------------------------------------------------

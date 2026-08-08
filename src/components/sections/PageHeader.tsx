@@ -41,6 +41,13 @@ interface PageHeaderProps {
   crumbs?: Crumb[];
   /** Rendered under the intro, e.g. a call to action or metadata row. */
   children?: ReactNode;
+  /**
+   * Rendered beside the heading on large screens. The plain masthead
+   * otherwise leaves the entire right half of a wide monitor empty, which
+   * reads as an unfinished page rather than as restraint — so pages with
+   * something genuinely useful to put there (the contact details) do.
+   */
+  aside?: ReactNode;
 }
 
 function Breadcrumbs({ crumbs, onDark }: { crumbs: Crumb[]; onDark: boolean }) {
@@ -99,13 +106,19 @@ export function PageHeader({
   variant = 'plain',
   crumbs,
   children,
+  aside,
 }: PageHeaderProps) {
   const onDark = variant === 'image';
   const lines = [title];
 
   const body = (
     <Container width="wide" className="relative z-20">
-      <div className="max-w-3xl">
+      <div
+        className={cn(
+          aside ? 'grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16' : 'max-w-3xl',
+        )}
+      >
+        <div className={cn(aside ? 'min-w-0' : undefined)}>
         {crumbs && crumbs.length > 0 && <Breadcrumbs crumbs={crumbs} onDark={onDark} />}
 
         {eyebrow && (
@@ -158,6 +171,9 @@ export function PageHeader({
             {children}
           </motion.div>
         )}
+        </div>
+
+        {aside && <div className="min-w-0">{aside}</div>}
       </div>
     </Container>
   );

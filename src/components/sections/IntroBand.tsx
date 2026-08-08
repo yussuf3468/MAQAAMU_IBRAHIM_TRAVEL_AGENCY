@@ -41,7 +41,7 @@ export function IntroBand() {
           <Reveal className="order-1 lg:order-2">
             {/* Runs to the viewport edge on large screens — the picture is
                 the point, so it is not politely contained. */}
-            <Parallax distance={44} className="lg:-mr-[max(0px,calc((100vw-92rem)/2+3.5rem))]">
+            <Parallax distance={44} className="lg:-mr-[max(0px,calc((100vw-var(--container-wide))/2+var(--spacing-gutter)))]">
               <EditorialImage
                 image={media.homeIntro}
                 aspect="5/4"

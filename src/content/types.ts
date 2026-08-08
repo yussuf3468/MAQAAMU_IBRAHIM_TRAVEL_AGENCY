@@ -286,6 +286,8 @@ export interface EnquiryFieldConfig {
   placeholder?: string;
   helpText?: string;
   autoComplete?: string;
+  /** Column width in the two-column form grid. Defaults to 'half'. */
+  span?: 'half' | 'full';
   /** Turn a field off in one line once the client explains their process. */
   enabled: boolean;
 }

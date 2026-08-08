@@ -1,5 +1,25 @@
 # Photographs
 
+## ⚠ The photographs currently here are placeholders
+
+Every image in this folder is a stock photograph from
+[Unsplash](https://unsplash.com), used under the Unsplash License (free for
+commercial use, no attribution required). They were chosen to be relevant —
+the Haram, Masjid an-Nabawi, pilgrims, aircraft, travel documents — but they
+are **not photographs of MAQAAMU IBRAHIM TRAVEL AGENCY, its office, its
+groups or its travellers.**
+
+They are here so the site looks finished today. **Replace them with the
+agency's own photographs as soon as they are available** — pictures of their
+actual groups, their office and the travellers they have looked after are
+worth more than any stock library, and they are what will make this site
+theirs rather than generic.
+
+Nothing on the site claims these are the agency's own photographs. No alt
+text and no caption says otherwise.
+
+---
+
 **Drop a file in this folder named after its slot. That is the whole job —
 no code change, no path to edit.**
 

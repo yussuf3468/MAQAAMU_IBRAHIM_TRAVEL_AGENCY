@@ -20,7 +20,8 @@ import type { ContentRecord } from './types';
 export interface FlightRoute extends ContentRecord {
   /** As printed in the English column of the brochure. */
   name: string;
-  /** As printed in the Somali column. */
+  /** As printed in the Somali column. Empty for the domestic routes, which
+   *  the office banner lists in English only. */
   nameSomali: string;
 }
 
@@ -43,4 +44,29 @@ export const flightRoutes: FlightRoute[] = [
   { name: 'Uganda', nameSomali: 'Uganda', status: 'confirmed' },
   { name: 'Tanzania', nameSomali: 'Tanzania', status: 'confirmed' },
   { name: 'South Africa', nameSomali: 'Koonfur Afrika', status: 'confirmed' },
+];
+
+/* =========================================================================
+   LOCAL FLIGHTS
+   -------------------------------------------------------------------------
+   Domestic routes, read from the "Local Flights" panel on the agency's own
+   office wall banner (visible in the film they supplied).
+
+   ⚠ THIS LIST IS INCOMPLETE. The banner has two columns and the camera pan
+   cuts off the right-hand one at the edge of frame. The seven below are
+   legible and certain. The remaining ones start "NAIROBI TO WA…", "NAIROBI
+   TO LAM…" and four more that cannot be read.
+
+   ASK THE CLIENT for the rest of the domestic destinations and add them
+   here — the section renders however many there are.
+   ========================================================================= */
+
+export const localRoutes: FlightRoute[] = [
+  { name: 'Garissa', nameSomali: '', status: 'confirmed' },
+  { name: 'Wajir', nameSomali: '', status: 'confirmed' },
+  { name: 'Mandera', nameSomali: '', status: 'confirmed' },
+  { name: 'Mombasa', nameSomali: '', status: 'confirmed' },
+  { name: 'Kisumu', nameSomali: '', status: 'confirmed' },
+  { name: 'Nakuru', nameSomali: '', status: 'confirmed' },
+  { name: 'Eldoret', nameSomali: '', status: 'confirmed' },
 ];

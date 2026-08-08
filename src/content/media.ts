@@ -43,7 +43,7 @@ export const media = {
   homeIntro: {
     slot: 'home.intro',
     src: null,
-    alt: 'Pilgrims gathered around the Kaaba in the Masjid al-Haram, Makkah.',
+    alt: 'The Kiswah of the Kaaba at night, its gold calligraphy lit against the dark.',
     tone: 'dawn',
     focal: 'center',
   } satisfies ImageRef,
@@ -60,7 +60,7 @@ export const media = {
   homeFilm: {
     slot: 'home.film',
     src: null,
-    alt: 'The Masjid al-Haram in Makkah beneath the Royal Clock Tower.',
+    alt: 'The interior of a mosque, its arches lit from within.',
     tone: 'dusk',
     focal: 'center',
   } satisfies ImageRef,
@@ -68,7 +68,7 @@ export const media = {
   homeInvitation: {
     slot: 'home.invitation',
     src: null,
-    alt: 'The green dome and minarets of Al-Masjid an-Nabawi in Madinah.',
+    alt: 'The Masjid al-Haram in Makkah at night beneath the Royal Clock Tower.',
     tone: 'night',
     focal: 'center',
   } satisfies ImageRef,
@@ -77,7 +77,7 @@ export const media = {
   aboutHeader: {
     slot: 'about.header',
     src: null,
-    alt: 'Pilgrims performing tawaf around the Kaaba in the Masjid al-Haram.',
+    alt: 'Worshippers filling the courtyard of the Masjid al-Haram in Makkah.',
     tone: 'dawn',
     focal: 'center',
   } satisfies ImageRef,
@@ -85,7 +85,7 @@ export const media = {
   aboutPortrait: {
     slot: 'about.portrait',
     src: null,
-    alt: 'Worshippers filling the courtyard of the Masjid al-Haram in Makkah.',
+    alt: 'Inside a mosque, ornate pillars and arches receding down the prayer hall.',
     tone: 'alpine',
     focal: 'center',
   } satisfies ImageRef,
@@ -101,7 +101,7 @@ export const media = {
   destinationsHeader: {
     slot: 'destinations.header',
     src: null,
-    alt: 'Al-Masjid an-Nabawi in Madinah at dusk, seen across the courtyard.',
+    alt: 'The green dome and minarets of Al-Masjid an-Nabawi in Madinah.',
     tone: 'ocean',
     focal: 'center',
   } satisfies ImageRef,
@@ -109,7 +109,7 @@ export const media = {
   packagesHeader: {
     slot: 'packages.header',
     src: null,
-    alt: 'Pilgrims gathered around the Kaaba in the Masjid al-Haram, Makkah.',
+    alt: 'Al-Masjid an-Nabawi in Madinah seen across the courtyard.',
     tone: 'dawn',
     focal: 'center',
   } satisfies ImageRef,
@@ -176,9 +176,29 @@ export const openGraphImage: string | null = null;
    ========================================================================= */
 
 export const film = {
-  /** e.g. '/video/film.mp4' — the section appears as soon as this is set. */
-  mp4: null as string | null,
-  /** e.g. '/video/film.webm' — optional, smaller where supported. */
+  /**
+   * The client's film, transcoded for the web.
+   *
+   * THE ORIGINAL WAS NOT USABLE AS SUPPLIED: a 1.49 GB QuickTime .MOV,
+   * 4K at 120fps in HEVC. Chrome and Firefox cannot decode HEVC at all, so
+   * it would have been a blank player for most visitors, and a file that
+   * size is rejected outright by most static hosts (Cloudflare Pages and
+   * Netlify both cap individual files well below it) — the deploy would
+   * have failed before anyone saw it.
+   *
+   * What ships instead: 1080p, 30fps, H.264 High profile with AAC audio,
+   * `+faststart` so playback begins before the file finishes downloading.
+   * The camera original is kept out of the build in /media-originals and
+   * is gitignored.
+   *
+   * TO REPLACE THE FILM LATER, re-encode with:
+   *   ffmpeg -i input.MOV -map 0:v:0 -map 0:a:0 \
+   *     -vf "scale=1920:-2,fps=30" \
+   *     -c:v libx264 -preset veryfast -crf 26 -pix_fmt yuv420p \
+   *     -c:a aac -b:a 128k -ac 2 -movflags +faststart public/video/film.mp4
+   */
+  mp4: '/video/film.mp4' as string | null,
+  /** Optional VP9/WebM alternative. H.264 already covers every browser. */
   webm: null as string | null,
   /** Optional .vtt subtitles. Strongly recommended: much of this audience
    *  watches with the sound off, and it makes the film accessible. */

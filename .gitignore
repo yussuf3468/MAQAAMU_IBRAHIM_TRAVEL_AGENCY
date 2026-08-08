@@ -8,3 +8,9 @@ dist-ssr
 .DS_Store
 *.tsbuildinfo
 .vite
+
+# Camera originals. The 1.5 GB 4K HEVC .MOV the client supplied lives in
+# media-originals/ and is NEVER deployed — public/video/film.mp4 is the
+# transcoded, web-playable version. Keep the original somewhere safe
+# (Drive, not git) so the film can be re-encoded if it is ever needed.
+media-originals/

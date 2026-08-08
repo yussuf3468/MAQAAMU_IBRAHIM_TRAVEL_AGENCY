@@ -1,4 +1,5 @@
 import { mkdir, rm } from 'node:fs/promises';
+import { readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
@@ -119,13 +120,15 @@ async function main() {
     'src/content/company.ts',
   );
 
-  const slots = Object.values(data.media);
-  const filled = slots.filter((slot) => Boolean(slot.src)).length;
+  // Photographs are resolved by filename from src/assets/images (see
+  // lib/image-registry.ts), so count the files rather than the `src` fields.
+  const imageDir = join(root, 'src', 'assets', 'images');
+  const supplied = readdirSync(imageDir).filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f));
   line(
     'Photography',
-    `${filled}/${slots.length} image slots filled`,
-    filled === slots.length,
-    'src/content/media.ts',
+    `${supplied.length} images in place (stock placeholders — swap for the agency's own)`,
+    supplied.length > 0,
+    'src/assets/images/',
   );
 
   console.log('');

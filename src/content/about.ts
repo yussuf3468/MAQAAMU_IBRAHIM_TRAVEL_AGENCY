@@ -33,6 +33,12 @@ export const aboutSections: AboutSection[] = [
     body: [
       'We are a Hajj and Umrah service and a travel agency, working from our office at Jam Street, Hodo Souk in Nairobi. We arrange complete Umrah and Hajj journeys — visa processing, return air tickets, accommodation near the Haram, ground transport, ziyarat and experienced guides who speak English, Arabic and other languages.',
       'Alongside the pilgrimage work we book domestic and international flights, reserve hotels, assist with visa applications and handle cargo. From Nairobi we ticket to Saudi Arabia, the UAE, Qatar, India, Malaysia, Türkiye, France, Germany, Canada, the USA, Australia, Ethiopia, Somalia, Uganda, Tanzania and South Africa.',
+      // ⚠ CONFIRM THE FREQUENCY. Written from the client's note "we offer
+      // flights doing Umrah, every 2-3 day a month". Read as: departures
+      // run every two to three days through the month. If they meant two
+      // or three departures per month, change this line — it is a
+      // scheduling promise and travellers will plan around it.
+      'Umrah departures run every two to three days through the month, so there is usually a group leaving soon after you decide to travel.',
       'Whatever the journey, the arrangement is the same: you talk to a person in our office, and that office stays reachable until you are home.',
     ],
     status: 'confirmed',

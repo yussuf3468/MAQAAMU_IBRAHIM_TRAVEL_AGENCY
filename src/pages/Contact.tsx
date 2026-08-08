@@ -1,5 +1,12 @@
-import { MessageCircle, Phone } from 'lucide-react';
-import { CONTENT_MODE, copy, findLiveChannel, isDraftMode, resolved } from '@/content';
+import { ArrowUpRight, MessageCircle, Phone } from 'lucide-react';
+import {
+  CONTENT_MODE,
+  copy,
+  findLiveChannel,
+  isDraftMode,
+  liveSocialLinks,
+  resolved,
+} from '@/content';
 import { findRoute } from '@/lib/site-map';
 import { breadcrumbJsonLd, graphs, organizationJsonLd, useSeo } from '@/lib/seo';
 import { Container, Section, SectionHeading } from '@/components/ui/Layout';
@@ -8,7 +15,7 @@ import { PendingChip } from '@/components/ui/Pending';
 import { Reveal } from '@/components/motion/Reveal';
 import { PageHeader } from '@/components/sections/PageHeader';
 import { ContactChannels } from '@/components/sections/ContactChannels';
-import { OfficeMap } from '@/components/sections/OfficeMap';
+import { OfficeAddress, OfficeMapEmbed } from '@/components/sections/OfficeMap';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
 
 /* =========================================================================
@@ -31,6 +38,7 @@ export default function Contact() {
     address?.status === 'confirmed' &&
     Boolean(address.streetAddress || address.locality || address.country);
 
+  const socials = liveSocialLinks;
   const whatsapp = findLiveChannel('whatsapp');
   const phone = findLiveChannel('phone');
 
@@ -58,6 +66,10 @@ export default function Contact() {
         title={copy.contact.heading}
         intro={copy.contact.intro}
         crumbs={[{ label: 'Home', to: '/' }, { label: 'Contact' }]}
+        // The numbers sit beside the heading rather than in a band below
+        // it: on this page they are the content, and the right half of a
+        // wide screen was otherwise empty.
+        aside={<ContactChannels columns={1} />}
       >
         {/* The two actions people actually came for, above the fold, before
             any of the page below has to be read. */}
@@ -85,12 +97,9 @@ export default function Contact() {
         </div>
       </PageHeader>
 
-      <Section size="sm">
-        <Container width="wide">
-          <ContactChannels columns={3} />
-        </Container>
-      </Section>
-
+      {/* The channels used to live in a band of their own here; they are
+          now in the masthead above, which removed a near-empty screen of
+          scrolling before the visitor reached anything useful. */}
       <Section size="sm" tone="sunk">
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
@@ -101,7 +110,7 @@ export default function Contact() {
               </h2>
 
               {hasAddress ? (
-                <OfficeMap />
+                <OfficeAddress />
               ) : (
                 <div className="flex flex-col gap-3">
                   <PendingChip>Office address</PendingChip>
@@ -116,56 +125,93 @@ export default function Contact() {
               )}
             </Reveal>
 
-            {/* Hours ------------------------------------------------------- */}
+            {/* Hours, or — while the agency has not given us their hours —
+                the places you can find them online. An empty column under a
+                heading reads as a broken page; this one always has content
+                and swaps back to hours the moment they are confirmed. */}
             <Reveal className="flex flex-col gap-6">
-              <h2 className="font-display-tight text-display-sm text-ink-900">
-                {copy.contact.hoursHeading}
-              </h2>
-
               {confirmedHours.length > 0 ? (
-                <dl className="flex flex-col divide-y divide-line border-y border-line">
-                  {confirmedHours.map((entry) => (
-                    <div
-                      key={entry.label}
-                      className="flex items-baseline justify-between gap-6 py-4"
-                    >
-                      <dt className="text-[0.9375rem] text-ink-700">{entry.label}</dt>
-                      <dd className="text-[0.9375rem] tabular-nums text-ink-900">
-                        {entry.closed || !entry.opens || !entry.closes
-                          ? 'Closed'
-                          : `${entry.opens} – ${entry.closes}`}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  <PendingChip>Opening hours</PendingChip>
+                <>
+                  <h2 className="font-display-tight text-display-sm text-ink-900">
+                    {copy.contact.hoursHeading}
+                  </h2>
+                  <dl className="flex flex-col divide-y divide-line border-y border-line">
+                    {confirmedHours.map((entry) => (
+                      <div
+                        key={entry.label}
+                        className="flex items-baseline justify-between gap-6 py-4"
+                      >
+                        <dt className="text-[0.9375rem] text-ink-700">{entry.label}</dt>
+                        <dd className="text-[0.9375rem] tabular-nums text-ink-900">
+                          {entry.closed || !entry.opens || !entry.closes
+                            ? 'Closed'
+                            : `${entry.opens} – ${entry.closes}`}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  {isDraftMode && <PendingChip className="self-start">Opening hours</PendingChip>}
+                </>
+              ) : socials.length > 0 ? (
+                <>
+                  <h2 className="font-display-tight text-display-sm text-ink-900">
+                    {copy.contact.followHeading}
+                  </h2>
+                  <p className="max-w-md text-[0.9375rem] leading-relaxed text-ink-700">
+                    See where our groups are travelling, and what is departing next.
+                  </p>
+                  <ul className="flex flex-col divide-y divide-line border-y border-line">
+                    {socials.map((link) => (
+                      <li key={link.platform}>
+                        <a
+                          href={link.href as string}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-center justify-between gap-6 py-4 transition-colors duration-200 hover:text-aegean-700"
+                        >
+                          <span className="text-[1.0625rem] font-medium text-ink-900 transition-colors duration-200 group-hover:text-aegean-700">
+                            {link.label}
+                          </span>
+                          <ArrowUpRight
+                            className="size-4 text-ink-500 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0"
+                            strokeWidth={1.5}
+                            aria-hidden="true"
+                          />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                   {isDraftMode && (
-                    <p className="max-w-md text-small leading-relaxed text-ink-600">
-                      Add the agency’s hours in
-                      <span className="font-mono"> src/content/contact.ts</span>. They feed both
-                      this table and the opening-hours structured data.
-                    </p>
+                    <PendingChip className="self-start">Opening hours still needed</PendingChip>
                   )}
-                </div>
-              )}
+                </>
+              ) : null}
             </Reveal>
           </div>
+
+          {/* Full width: a map in half a column is unusable on a phone. */}
+          <Reveal className="mt-12">
+            <OfficeMapEmbed />
+          </Reveal>
         </Container>
       </Section>
 
       {/* Enquiry ------------------------------------------------------------ */}
       <Section>
         <Container width="content">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Or write to us"
-              heading="Send an enquiry"
-              intro="If it is easier to write than to call, this reaches the same people."
-            />
-          </Reveal>
-          <EnquiryForm className="mt-12" />
+          {/* A form is a reading task as much as a typing one — full
+              container width would give 1200px-wide single-line inputs.
+              54rem keeps two comfortable columns and a sane measure. */}
+          <div className="mx-auto max-w-[54rem]">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Or write to us"
+                heading="Send an enquiry"
+                intro="If it is easier to write than to call, this reaches the same people."
+              />
+            </Reveal>
+            <EnquiryForm className="mt-12" />
+          </div>
         </Container>
       </Section>
     </>

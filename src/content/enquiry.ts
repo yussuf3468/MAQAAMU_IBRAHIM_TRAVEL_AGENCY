@@ -19,6 +19,10 @@ import type { EnquiryFieldConfig } from './types';
    conversation starts. Do not build it speculatively.
    ========================================================================= */
 
+/* The order below IS the layout. Fields are paired so each row holds two
+   related things — name with phone, the two dates together — and only the
+   fields that need the full measure take it. Reordering this array
+   reorders the form. */
 export const enquiryFields: EnquiryFieldConfig[] = [
   {
     name: 'name',
@@ -27,6 +31,7 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     required: true,
     placeholder: 'As it appears on your passport',
     autoComplete: 'name',
+    span: 'half',
     enabled: true,
   },
   {
@@ -36,6 +41,7 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     required: true,
     placeholder: 'Include your country code',
     autoComplete: 'tel',
+    span: 'half',
     enabled: true,
   },
   {
@@ -43,8 +49,18 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     label: 'Email',
     type: 'email',
     required: false,
-    placeholder: 'Optional',
+    placeholder: 'name@example.com',
     autoComplete: 'email',
+    span: 'half',
+    enabled: true,
+  },
+  {
+    name: 'travellers',
+    label: 'Number of travellers',
+    type: 'number',
+    required: false,
+    placeholder: '1',
+    span: 'half',
     enabled: true,
   },
   {
@@ -52,6 +68,7 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     label: 'What can we help with?',
     type: 'select',
     required: false,
+    span: 'half',
     enabled: true,
   },
   {
@@ -59,29 +76,24 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     label: 'Where are you going?',
     type: 'select',
     required: false,
-    helpText: 'Choose a destination, or tell us in your message.',
+    helpText: 'Or tell us in your message below.',
+    span: 'half',
     enabled: true,
   },
   {
     name: 'departureDate',
-    label: 'Departure',
+    label: 'Departure date',
     type: 'date',
     required: false,
+    span: 'half',
     enabled: true,
   },
   {
     name: 'returnDate',
-    label: 'Return',
+    label: 'Return date',
     type: 'date',
     required: false,
-    enabled: true,
-  },
-  {
-    name: 'travellers',
-    label: 'Travellers',
-    type: 'number',
-    required: false,
-    placeholder: '1',
+    span: 'half',
     enabled: true,
   },
   {
@@ -91,6 +103,7 @@ export const enquiryFields: EnquiryFieldConfig[] = [
     required: false,
     placeholder:
       'Anything that helps us prepare — who is travelling, what matters most, questions you already have.',
+    span: 'full',
     enabled: true,
   },
 ];
@@ -108,6 +121,8 @@ export const enquiryCopy = {
   heading: 'Tell us where you are going',
   intro:
     'Share as much or as little as you like. A travel consultant will read it personally and come back to you.',
+  /** Sits above the fields, so nobody scans the form for asterisks. */
+  requiredNote: 'Only your name and a phone number are required.',
   submitLabel: 'Send enquiry',
   submitLabelWhatsApp: 'Send via WhatsApp',
   /** Shown after a successful submit. Promises no response time — the
@@ -120,6 +135,10 @@ export const enquiryCopy = {
   /** Shown in draft mode while no contact channel is confirmed. */
   unconfiguredNotice:
     'Enquiry delivery is not connected yet. Add a confirmed WhatsApp or email channel in src/content/contact.ts, or set VITE_ENQUIRY_ENDPOINT.',
+  /* Real wording, not a placeholder — it states only what is actually true
+     of this form: the details go to the agency so they can reply, and
+     nowhere else. If the client later adopts a formal privacy policy,
+     replace this with theirs and link to it. */
   privacyNote:
-    'Your details are used only to answer your enquiry. Replace this line with the agency’s own privacy wording.',
+    'Your details go to MAQAAMU IBRAHIM TRAVEL AGENCY so we can answer your enquiry. We do not share them with anyone else.',
 } as const;

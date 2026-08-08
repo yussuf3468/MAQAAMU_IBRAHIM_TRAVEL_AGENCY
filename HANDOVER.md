@@ -42,16 +42,21 @@ Run `npm run content:check` at any point to see the current state.
 
 ---
 
-## 3. Photography — the biggest remaining win
+## 3. Photography — placeholders are in, the agency's own are the win
 
-**No photographs have been supplied yet.** Every image slot currently renders
-a composed abstract in deep navy and gold — designed, intentional, and
-clearly not a stock photo of somebody else's Umrah group. The site is
-presentable as it stands, but real photographs of *their* travellers, *their*
-office and *their* groups is what will make the client proud of it.
+Every image slot is filled with a relevant stock photograph from Unsplash
+(Unsplash License: free for commercial use, no attribution required) — the
+Haram, Masjid an-Nabawi, pilgrims, aircraft, a departure board, travel
+documents, cargo. The site looks finished today.
 
-**Adding one is a drag and drop.** Save the file into `src/assets/images/`
-named after its slot:
+**They are not photographs of this agency.** Replace them with the client's
+own as soon as they can send them: their groups at the airport, the office
+on Jam Street, travellers they have looked after. That is the difference
+between a site that looks good and a site that is unmistakably theirs — and
+it is the single highest-value thing left on this list.
+
+**Replacing one is a drag and drop.** Overwrite the file in
+`src/assets/images/` keeping the same name:
 
 ```
 src/assets/images/home.hero.jpg
