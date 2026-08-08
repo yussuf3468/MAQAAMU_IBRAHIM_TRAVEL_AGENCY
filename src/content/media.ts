@@ -60,7 +60,7 @@ export const media = {
   homeFilm: {
     slot: 'home.film',
     src: null,
-    alt: 'The interior of a mosque, its arches lit from within.',
+    alt: 'A travel consultant at the desk in the MAQAAMU IBRAHIM TRAVEL AGENCY office, with the agency’s route banner behind him.',
     tone: 'dusk',
     focal: 'center',
   } satisfies ImageRef,
@@ -186,16 +186,28 @@ export const film = {
    * Netlify both cap individual files well below it) — the deploy would
    * have failed before anyone saw it.
    *
-   * What ships instead: 1080p, 30fps, H.264 High profile with AAC audio,
-   * `+faststart` so playback begins before the file finishes downloading.
-   * The camera original is kept out of the build in /media-originals and
-   * is gitignored.
+   * TWO MORE THINGS WERE WRONG WITH THE SOURCE:
+   *  1. Its rotation metadata said -90, which made every tool flip it. The
+   *     encode neutralises that with `-display_rotation 0`.
+   *  2. The phone was physically turned partway through the take, so the
+   *     opening seconds are landscape and the rest is portrait. The first
+   *     16 seconds are cut and the remainder is rotated upright, which is
+   *     why the finished clip is 9:16 — and why FilmSection presents it in
+   *     a phone-shaped player instead of letterboxing it into 16:9.
    *
-   * TO REPLACE THE FILM LATER, re-encode with:
-   *   ffmpeg -i input.MOV -map 0:v:0 -map 0:a:0 \
-   *     -vf "scale=1920:-2,fps=30" \
-   *     -c:v libx264 -preset veryfast -crf 26 -pix_fmt yuv420p \
-   *     -c:a aac -b:a 128k -ac 2 -movflags +faststart public/video/film.mp4
+   * What ships: 720 × 1280, 30fps, H.264 High with AAC audio, 6.7 MB,
+   * `+faststart` so playback begins before the file finishes downloading.
+   * The 1.49 GB camera original is kept out of the build in
+   * /media-originals, which is gitignored.
+   *
+   * TO REPLACE THE FILM LATER:
+   *   ffmpeg -y -display_rotation 0 -ss <trim> -i input.MOV \
+   *     -map 0:v:0 -map 0:a:0 -vf "transpose=1,scale=720:-2,fps=30" \
+   *     -c:v libx264 -preset veryfast -crf 28 -maxrate 1400k -bufsize 2800k \
+   *     -pix_fmt yuv420p -c:a aac -b:a 96k -ac 2 \
+   *     -movflags +faststart public/video/film.mp4
+   * Drop the `transpose=1` if the replacement was shot landscape, and
+   * change FilmSection's aspect ratio to 16/9 to match.
    */
   mp4: '/video/film.mp4' as string | null,
   /** Optional VP9/WebM alternative. H.264 already covers every browser. */
@@ -209,7 +221,12 @@ export const film = {
      footage does not deliver — and a caption that oversells what follows
      costs more than it gains. Re-caption this if the client sends a
      different film. */
+  /* The film is a piece to camera from the office on Jam Street. The
+     heading says exactly that. It was briefly captioned "A look at how we
+     travel", which the footage does not deliver — a caption that oversells
+     what follows costs more than it gains. Re-caption if a different film
+     replaces this one. */
   eyebrow: 'Inside the office',
-  heading: 'Come and see us on Jam Street',
-  body: 'A walk around our office in Eastleigh — the routes we fly, the services we offer, and the people you will be dealing with.',
+  heading: 'A word from our office on Jam Street',
+  body: 'Meet the people who will be arranging your journey, in the office you are welcome to walk into.',
 } as const;
