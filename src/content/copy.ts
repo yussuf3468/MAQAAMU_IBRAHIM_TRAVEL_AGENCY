@@ -14,12 +14,25 @@
    ========================================================================= */
 
 export const copy = {
+  /* -----------------------------------------------------------------------
+     THE HERO SETS WHAT KIND OF BUSINESS THIS IS.
+     An earlier version led with "Hajj & Umrah Service" and a photograph of
+     Al-Masjid an-Nabawi. That is what their printed material leads with,
+     but it made the website read as a pilgrimage specialist — so a customer
+     wanting a ticket to Dubai, a hotel, a visa or a cargo shipment could not
+     tell the site was for them.
+
+     The agency is a full travel agency that is also very good at Hajj and
+     Umrah. The eyebrow, headline, subhead and hero image now all say that,
+     and the services grid sits directly beneath so the whole range is
+     visible without scrolling.
+     ----------------------------------------------------------------------- */
   hero: {
     /** The agency's own line, printed on every brochure and their signage. */
     headline: 'Safe journey, peace of mind.',
-    eyebrow: 'Hajj & Umrah Service · Nairobi',
+    eyebrow: 'Travel Agency · Nairobi',
     subhead:
-      'Umrah and Hajj arranged end to end, flights ticketed worldwide, and an office you can walk into. Tell us where you are going and we will take it from there.',
+      'Flights across Kenya and the world, cargo, hotels, visas — and Hajj and Umrah arranged end to end. One office on Jam Street handles all of it.',
     primaryCta: 'Plan Your Journey',
     secondaryCta: 'Explore Our Services',
     scrollHint: 'Scroll',
@@ -27,16 +40,16 @@ export const copy = {
 
   intro: {
     eyebrow: 'The agency',
-    heading: 'Your journey. Your worship. Your comfort.',
-    body: 'A pilgrimage is a hundred small arrangements that have to hold together — a visa, a ticket, a room near the Haram, transport that turns up. Our work is to make all of it invisible to you, so that what you remember is the journey and not the paperwork behind it.',
+    heading: 'Everything a journey needs, in one office.',
+    body: 'A trip is a hundred small arrangements that have to hold together — a ticket, a visa, a room, transport that turns up, cargo that arrives. Our work is to make all of it invisible to you, so that what you remember is the journey and not the paperwork behind it.',
     cta: 'More about us',
   },
 
   services: {
     eyebrow: 'What we do',
-    heading: 'Services',
+    heading: 'Nine things we handle for you',
     intro:
-      'Hajj and Umrah journeys, air ticketing, cargo, hotels and visas — arranged by the same office, from start to finish.',
+      'Flights, cargo, visas, hotels, Hajj and Umrah, and travel arranged around whatever you need. One office, from the first message to the day you are home.',
     cta: 'View all services',
     detailIncludes: 'What’s included',
     detailAudience: 'Who this is for',
@@ -46,10 +59,10 @@ export const copy = {
   },
 
   destinations: {
-    eyebrow: 'Where we travel',
+    eyebrow: 'Pilgrimage',
     heading: 'Makkah and Madinah',
     intro:
-      'The two cities every journey we arrange is built around, with accommodation near the Haram and guided ziyarat in both.',
+      'For those travelling for Umrah or Hajj: accommodation near the Haram, guided ziyarat, and the transport between the two cities.',
     cta: 'View destinations',
     detailHighlights: 'What we arrange here',
     detailBestTime: 'Best time to travel',
@@ -59,10 +72,10 @@ export const copy = {
   },
 
   packages: {
-    eyebrow: 'Umrah 2026',
-    heading: 'Travel packages',
+    eyebrow: 'On offer now · Umrah 2026',
+    heading: 'August 2026 departures',
     intro:
-      'Our August 2026 Umrah departures, with the price, the dates and exactly what each one covers.',
+      'Three Umrah packages leaving this August, with the price, the dates and exactly what each one covers. Places on each departure are limited.',
     priceOnEnquiry: 'Price on enquiry',
     detailInclusions: 'Included',
     detailExclusions: 'Not included',
@@ -93,7 +106,7 @@ export const copy = {
     eyebrow: 'About',
     heading: 'MAQAAMU IBRAHIM TRAVEL AGENCY',
     intro:
-      'A Hajj and Umrah service and travel agency working from Jam Street, Hodo Souk in Nairobi.',
+      'A full travel agency working from Jam Street, Hodo Souk in Nairobi — flights, cargo, visas, hotels, and Hajj and Umrah.',
     valuesEyebrow: 'What we hold to',
     valuesHeading: 'The way we work',
   },

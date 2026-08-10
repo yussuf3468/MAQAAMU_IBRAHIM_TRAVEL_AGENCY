@@ -199,6 +199,19 @@ export interface TravelPackage extends ContentRecord {
   priceNote: string | null;
   inclusions: string[];
   exclusions: string[];
+  /**
+   * Small chip shown on the package card and its page.
+   *
+   * IT MUST STATE A FACT, NOT A SALES CLAIM. "Most included" and "10 days"
+   * are checkable against the package itself. "50% off", "Best price in
+   * Nairobi" or "Special offer" are commercial claims and may only be used
+   * if the agency says so in writing — a discount implies a previous higher
+   * price, which is exactly the kind of thing consumer regulators and
+   * customers both check.
+   */
+  badge: string | null;
+  /** Draws the card with the emphasised treatment. Use on one package. */
+  highlight?: boolean;
   image: ImageRef;
   featured: boolean;
 }

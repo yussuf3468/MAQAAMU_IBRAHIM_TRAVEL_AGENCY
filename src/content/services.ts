@@ -29,9 +29,151 @@ import type { Service } from './types';
 
    The client said the list is "not limited" to these — add further
    services here as they confirm them.
+
+   ORDER MATTERS, AND THIS ORDER IS DELIBERATE.
+   The array order is the order of the homepage grid and the /services page.
+   It runs flights → cargo → pilgrimage → supporting services, which in a
+   three-column grid puts general travel on the first row and Hajj and Umrah
+   in the middle of the second — prominent, but not the first thing a
+   visitor sees.
+
+   An earlier version led with Umrah and Hajj and the agency's reaction was
+   that the site looked as though that was all they did. Flights are the
+   volume business and belong first; the pilgrimage work keeps its flagship
+   billing through the packages band further down the page.
    ========================================================================= */
 
 export const services: Service[] = [
+
+  {
+    slug: 'air-ticketing',
+    title: 'Air ticketing',
+    eyebrow: 'Domestic & international',
+    summary:
+      'Flight booking and ticketing from Nairobi — domestic routes and international destinations across the Gulf, Asia, Europe, Africa and beyond.',
+    description: [
+      'We book and issue tickets for domestic and international flights. From Nairobi we regularly ticket to Saudi Arabia, the UAE, Qatar, India, Malaysia, Türkiye, France, Germany, Canada, the USA, Australia, Ethiopia, Somalia, Uganda, Tanzania and South Africa.',
+      'Tell us where you are going and when. We will come back with the options and issue the ticket once you are happy — you deal with a person in the office, not a booking screen.',
+    ],
+    includes: [
+      'Domestic flight booking',
+      'International flight booking',
+      'Return and one-way tickets',
+      'Date and route advice before you book',
+    ],
+    audience: [
+      'Travellers flying from Nairobi',
+      'Families and groups booking together',
+      'Business travellers',
+      'Anyone who would rather have a person handle the booking',
+    ],
+    process: [
+      {
+        title: 'Tell us your route and dates',
+        body: 'Call or WhatsApp the office with where you are going, when, and how many people are travelling.',
+      },
+      {
+        title: 'We come back with options',
+        body: 'We check the routes and fares available and explain the difference between them.',
+      },
+      {
+        title: 'Ticket issued',
+        body: 'Once you confirm, we issue the ticket and send it to you.',
+      },
+    ],
+    icon: 'plane',
+    image: { slot: 'service.air-ticketing', src: null, alt: 'An airport departure board showing flight information.', tone: 'dawn', focal: 'center' },
+    featured: true,
+    status: 'confirmed',
+  },
+
+  {
+    slug: 'local-flights',
+    title: 'Local flights',
+    eyebrow: 'Domestic routes',
+    summary:
+      'Domestic flights to most counties in Kenya, booked and ticketed by the same office that handles the long-haul routes.',
+    description: [
+      'We book and issue tickets for domestic flights to most counties in Kenya — Garissa, Wajir, Mandera, Mombasa, Kisumu, Nakuru, Eldoret and beyond. It is the same office, the same people and the same care whether you are flying across the country or across the world.',
+      'Tell us where you need to be and when. We will come back with the options and issue the ticket once you are happy with it.',
+    ],
+    includes: [
+      'Domestic flights to most counties in Kenya',
+      'One-way and return tickets',
+      'Advice on routes and timings before you book',
+      'Changes handled by the office, not a call centre',
+    ],
+    audience: [
+      'Travellers flying within the country',
+      'Business travellers',
+      'Families and groups booking together',
+      'Anyone connecting onto an international flight',
+    ],
+    process: [
+      {
+        title: 'Tell us the route and date',
+        body: 'Call or WhatsApp the office with where you are going and when.',
+      },
+      {
+        title: 'We check what is available',
+        body: 'We come back with the options and what each one costs.',
+      },
+      {
+        title: 'Ticket issued',
+        body: 'Once you confirm, we issue the ticket and send it to you.',
+      },
+    ],
+    icon: 'plane',
+    image: {
+      slot: 'service.local-flights',
+      src: null,
+      alt: 'A passenger aircraft on the apron at sunrise.',
+      tone: 'dawn',
+      focal: 'center',
+    },
+    featured: false,
+    status: 'confirmed',
+  },
+
+  {
+    slug: 'cargo',
+    title: 'Cargo',
+    eyebrow: 'Freight and shipping',
+    summary:
+      'Cargo handled alongside your travel — talk to the office about what you are sending and where it needs to go.',
+    description: [
+      'We handle cargo as well as passenger travel. Contact the office with what you are sending, where it is going and roughly what it weighs, and we will tell you the options and the cost.',
+    ],
+    includes: [
+      'Cargo booking and handling',
+      'Advice on what can and cannot be sent',
+      'Costs confirmed before anything is shipped',
+    ],
+    audience: [
+      'Customers sending goods abroad',
+      'Traders shipping regularly',
+      'Travellers sending items ahead or behind them',
+    ],
+    process: [
+      {
+        title: 'Tell us what you are sending',
+        body: 'Contact the office with the destination, the contents and the approximate weight.',
+      },
+      {
+        title: 'We quote it',
+        body: 'We confirm what it will cost and how long it should take before anything is committed.',
+      },
+      {
+        title: 'We send it',
+        body: 'The cargo is booked and handled, and you are told when it is on its way.',
+      },
+    ],
+    icon: 'globe',
+    image: { slot: 'service.cargo', src: null, alt: 'Shipping containers stacked on a cargo vessel.', tone: 'aurora', focal: 'center' },
+    featured: false,
+    status: 'confirmed',
+  },
+
   {
     slug: 'umrah',
     title: 'Umrah',
@@ -120,213 +262,6 @@ export const services: Service[] = [
   },
 
   {
-    slug: 'air-ticketing',
-    title: 'Air ticketing',
-    eyebrow: 'Domestic & international',
-    summary:
-      'Flight booking and ticketing from Nairobi — domestic routes and international destinations across the Gulf, Asia, Europe, Africa and beyond.',
-    description: [
-      'We book and issue tickets for domestic and international flights. From Nairobi we regularly ticket to Saudi Arabia, the UAE, Qatar, India, Malaysia, Türkiye, France, Germany, Canada, the USA, Australia, Ethiopia, Somalia, Uganda, Tanzania and South Africa.',
-      'Tell us where you are going and when. We will come back with the options and issue the ticket once you are happy — you deal with a person in the office, not a booking screen.',
-    ],
-    includes: [
-      'Domestic flight booking',
-      'International flight booking',
-      'Return and one-way tickets',
-      'Date and route advice before you book',
-    ],
-    audience: [
-      'Travellers flying from Nairobi',
-      'Families and groups booking together',
-      'Business travellers',
-      'Anyone who would rather have a person handle the booking',
-    ],
-    process: [
-      {
-        title: 'Tell us your route and dates',
-        body: 'Call or WhatsApp the office with where you are going, when, and how many people are travelling.',
-      },
-      {
-        title: 'We come back with options',
-        body: 'We check the routes and fares available and explain the difference between them.',
-      },
-      {
-        title: 'Ticket issued',
-        body: 'Once you confirm, we issue the ticket and send it to you.',
-      },
-    ],
-    icon: 'plane',
-    image: { slot: 'service.air-ticketing', src: null, alt: 'An airport departure board showing flight information.', tone: 'dawn', focal: 'center' },
-    featured: true,
-    status: 'confirmed',
-  },
-
-  {
-    slug: 'local-flights',
-    title: 'Local flights',
-    eyebrow: 'Domestic routes',
-    summary:
-      'Domestic flights booked and ticketed — the short hops within the country, handled by the same office as the long ones.',
-    description: [
-      'We book and issue tickets for domestic flights as well as international ones. It is the same office, the same people and the same care whether you are flying across the country or across the world.',
-      'Tell us where you need to be and when. We will come back with the options and issue the ticket once you are happy with it.',
-    ],
-    includes: [
-      'Domestic flight booking and ticketing',
-      'One-way and return tickets',
-      'Advice on routes and timings before you book',
-      'Changes handled by the office, not a call centre',
-    ],
-    audience: [
-      'Travellers flying within the country',
-      'Business travellers',
-      'Families and groups booking together',
-      'Anyone connecting onto an international flight',
-    ],
-    process: [
-      {
-        title: 'Tell us the route and date',
-        body: 'Call or WhatsApp the office with where you are going and when.',
-      },
-      {
-        title: 'We check what is available',
-        body: 'We come back with the options and what each one costs.',
-      },
-      {
-        title: 'Ticket issued',
-        body: 'Once you confirm, we issue the ticket and send it to you.',
-      },
-    ],
-    icon: 'plane',
-    image: {
-      slot: 'service.local-flights',
-      src: null,
-      alt: 'A passenger aircraft on the apron at sunrise.',
-      tone: 'dawn',
-      focal: 'center',
-    },
-    featured: false,
-    status: 'confirmed',
-  },
-
-  /* -----------------------------------------------------------------------
-     RUQYAH TREATMENT TRAVEL
-     Confirmed by the client: "they also take people with jinn and sixr and
-     get treated there" — cilaaj iyo sixir.
-
-     THE LINE THIS PAGE DOES NOT CROSS, and must not:
-     The agency arranges the TRAVEL. It does not perform the ruqyah, and
-     nothing here promises a cure, a result or a timeframe. That is the
-     same discipline applied to the visa page — we describe what the agency
-     actually does and leave the outcome to the people responsible for it.
-     A promise of healing on a travel agency's website would be both untrue
-     and, for someone in distress, cruel.
-
-     Tone matters here more than anywhere else on the site: people reading
-     this page are often worried about someone they love. It is written
-     plainly and without drama, and it says the arrangements are discreet
-     because that is what such travellers ask for.
-     ----------------------------------------------------------------------- */
-  {
-    slug: 'ruqyah-treatment-travel',
-    title: 'Ruqyah treatment travel',
-    eyebrow: 'Cilaaj iyo sixir',
-    summary:
-      'Travel arranged for those seeking ruqyah — the visa, the flight, somewhere to stay and the transport to and from the treatment.',
-    description: [
-      'Some travellers come to us for one particular reason: they are seeking ruqyah, for themselves or for someone in their family, and they need to reach the people who provide it. We arrange that journey.',
-      'Our part is the travel. We process the visa, issue the ticket, book accommodation close to where the treatment takes place, and arrange the transport between them. The treatment itself is carried out by the practitioners — we do not perform it, and we do not make promises about what it will achieve.',
-      'These arrangements are handled discreetly. Speak to the office and we will explain what is involved, what it costs, and how long people usually stay.',
-    ],
-    includes: [
-      'Visa processing',
-      'Return air ticket',
-      'Accommodation close to the treatment',
-      'Transport to and from appointments',
-      'One person at the office looking after the arrangements throughout',
-    ],
-    audience: [
-      'Travellers seeking ruqyah for sixir or for jinn',
-      'Families travelling with someone who is unwell',
-      'Travellers who would rather this was arranged quietly',
-      'Anyone who wants the journey handled so they can concentrate on the reason for it',
-    ],
-    process: [
-      {
-        title: 'Speak to us in confidence',
-        body: 'Tell us who is travelling and what is needed. Nothing is discussed outside the office.',
-      },
-      {
-        title: 'We arrange the journey',
-        body: 'Visa, ticket, accommodation near the treatment and transport between them — confirmed before you travel.',
-      },
-      {
-        title: 'We stay reachable',
-        body: 'You have someone at the office to call for as long as you are away.',
-      },
-    ],
-    icon: 'shield',
-    image: {
-      slot: 'service.ruqyah-treatment-travel',
-      src: null,
-      alt: 'A copy of the Qur’an bound in blue and gold, with prayer beads and a prayer rug beside it.',
-      tone: 'aurora',
-      focal: 'center',
-    },
-    featured: false,
-    status: 'confirmed',
-  },
-
-  {
-    slug: 'disability-care',
-    title: 'Disability care',
-    eyebrow: 'Assisted travel',
-    summary:
-      'Travel arranged around what you need — assistance at the airport, on arrival, and throughout the journey.',
-    description: [
-      'Travelling with a disability, or with someone who needs assistance, should not mean travelling with less care. We arrange journeys around what you actually need rather than around what is standard.',
-      'Tell us what assistance is required — mobility, wheelchair support at the airport, help through immigration, accessible accommodation, or someone on hand throughout — and we will make the arrangements and confirm them before you travel.',
-      'This applies to Umrah and Hajj as much as to any other journey. Talk to the office early so there is time to arrange everything properly.',
-    ],
-    includes: [
-      'Assistance arranged at the airport',
-      'Wheelchair and mobility support requested with the airline',
-      'Accommodation chosen for accessibility',
-      'Support through the journey, arranged in advance',
-    ],
-    audience: [
-      'Travellers with reduced mobility',
-      'Elderly pilgrims',
-      'Families travelling with someone who needs assistance',
-      'Anyone who needs support arranged before departure',
-    ],
-    process: [
-      {
-        title: 'Tell us what is needed',
-        body: 'Explain the assistance required. The more we know, the more we can arrange in advance.',
-      },
-      {
-        title: 'We make the arrangements',
-        body: 'We request assistance with the airline, choose accommodation that suits, and arrange transport accordingly.',
-      },
-      {
-        title: 'Confirmed before you travel',
-        body: 'You know what has been arranged before you leave, and the office stays reachable while you are away.',
-      },
-    ],
-    icon: 'users',
-    image: {
-      slot: 'service.disability-care',
-      src: null,
-      alt: 'An empty airport concourse with wide, level walkways.',
-      tone: 'alpine',
-      focal: 'center',
-    },
-    featured: false,
-    status: 'confirmed',
-  },
-
-  {
     slug: 'visa-services',
     title: 'Visa services',
     eyebrow: 'Fast and reliable',
@@ -409,40 +344,118 @@ export const services: Service[] = [
   },
 
   {
-    slug: 'cargo',
-    title: 'Cargo',
-    eyebrow: 'Freight and shipping',
+    slug: 'disability-care',
+    title: 'Disability care',
+    eyebrow: 'Assisted travel',
     summary:
-      'Cargo handled alongside your travel — talk to the office about what you are sending and where it needs to go.',
+      'Travel arranged around what you need — assistance at the airport, on arrival, and throughout the journey.',
     description: [
-      'We handle cargo as well as passenger travel. Contact the office with what you are sending, where it is going and roughly what it weighs, and we will tell you the options and the cost.',
+      'Travelling with a disability, or with someone who needs assistance, should not mean travelling with less care. We arrange journeys around what you actually need rather than around what is standard.',
+      'Tell us what assistance is required — mobility, wheelchair support at the airport, help through immigration, accessible accommodation, or someone on hand throughout — and we will make the arrangements and confirm them before you travel.',
+      'This applies to Umrah and Hajj as much as to any other journey. Talk to the office early so there is time to arrange everything properly.',
     ],
     includes: [
-      'Cargo booking and handling',
-      'Advice on what can and cannot be sent',
-      'Costs confirmed before anything is shipped',
+      'Assistance arranged at the airport',
+      'Wheelchair and mobility support requested with the airline',
+      'Accommodation chosen for accessibility',
+      'Support through the journey, arranged in advance',
     ],
     audience: [
-      'Customers sending goods abroad',
-      'Traders shipping regularly',
-      'Travellers sending items ahead or behind them',
+      'Travellers with reduced mobility',
+      'Elderly pilgrims',
+      'Families travelling with someone who needs assistance',
+      'Anyone who needs support arranged before departure',
     ],
     process: [
       {
-        title: 'Tell us what you are sending',
-        body: 'Contact the office with the destination, the contents and the approximate weight.',
+        title: 'Tell us what is needed',
+        body: 'Explain the assistance required. The more we know, the more we can arrange in advance.',
       },
       {
-        title: 'We quote it',
-        body: 'We confirm what it will cost and how long it should take before anything is committed.',
+        title: 'We make the arrangements',
+        body: 'We request assistance with the airline, choose accommodation that suits, and arrange transport accordingly.',
       },
       {
-        title: 'We send it',
-        body: 'The cargo is booked and handled, and you are told when it is on its way.',
+        title: 'Confirmed before you travel',
+        body: 'You know what has been arranged before you leave, and the office stays reachable while you are away.',
       },
     ],
-    icon: 'globe',
-    image: { slot: 'service.cargo', src: null, alt: 'Shipping containers stacked on a cargo vessel.', tone: 'aurora', focal: 'center' },
+    icon: 'users',
+    image: {
+      slot: 'service.disability-care',
+      src: null,
+      alt: 'An empty airport concourse with wide, level walkways.',
+      tone: 'alpine',
+      focal: 'center',
+    },
+    featured: false,
+    status: 'confirmed',
+  },
+
+  /* -----------------------------------------------------------------------
+     RUQYAH TREATMENT TRAVEL
+     Confirmed by the client: "they also take people with jinn and sixr and
+     get treated there" — cilaaj iyo sixir.
+
+     THE LINE THIS PAGE DOES NOT CROSS, and must not:
+     The agency arranges the TRAVEL. It does not perform the ruqyah, and
+     nothing here promises a cure, a result or a timeframe. That is the
+     same discipline applied to the visa page — we describe what the agency
+     actually does and leave the outcome to the people responsible for it.
+     A promise of healing on a travel agency's website would be both untrue
+     and, for someone in distress, cruel.
+
+     Tone matters here more than anywhere else on the site: people reading
+     this page are often worried about someone they love. It is written
+     plainly and without drama, and it says the arrangements are discreet
+     because that is what such travellers ask for.
+     ----------------------------------------------------------------------- */
+  {
+    slug: 'ruqyah-treatment-travel',
+    title: 'Ruqyah treatment travel',
+    eyebrow: 'Cilaaj iyo sixir',
+    summary:
+      'Travel arranged for those seeking ruqyah — the visa, the flight, somewhere to stay and the transport to and from the treatment.',
+    description: [
+      'Some travellers come to us for one particular reason: they are seeking ruqyah, for themselves or for someone in their family, and they need to reach the people who provide it. We arrange that journey.',
+      'Our part is the travel. We process the visa, issue the ticket, book accommodation close to where the treatment takes place, and arrange the transport between them. The treatment itself is carried out by the practitioners — we do not perform it, and we do not make promises about what it will achieve.',
+      'These arrangements are handled discreetly. Speak to the office and we will explain what is involved, what it costs, and how long people usually stay.',
+    ],
+    includes: [
+      'Visa processing',
+      'Return air ticket',
+      'Accommodation close to the treatment',
+      'Transport to and from appointments',
+      'One person at the office looking after the arrangements throughout',
+    ],
+    audience: [
+      'Travellers seeking ruqyah for sixir or for jinn',
+      'Families travelling with someone who is unwell',
+      'Travellers who would rather this was arranged quietly',
+      'Anyone who wants the journey handled so they can concentrate on the reason for it',
+    ],
+    process: [
+      {
+        title: 'Speak to us in confidence',
+        body: 'Tell us who is travelling and what is needed. Nothing is discussed outside the office.',
+      },
+      {
+        title: 'We arrange the journey',
+        body: 'Visa, ticket, accommodation near the treatment and transport between them — confirmed before you travel.',
+      },
+      {
+        title: 'We stay reachable',
+        body: 'You have someone at the office to call for as long as you are away.',
+      },
+    ],
+    icon: 'shield',
+    image: {
+      slot: 'service.ruqyah-treatment-travel',
+      src: null,
+      alt: 'A copy of the Qur’an bound in blue and gold, with prayer beads and a prayer rug beside it.',
+      tone: 'aurora',
+      focal: 'center',
+    },
     featured: false,
     status: 'confirmed',
   },

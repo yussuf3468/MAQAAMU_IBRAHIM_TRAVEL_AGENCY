@@ -130,7 +130,7 @@ export const faqItems: FaqItem[] = [
     category: 'Flights and cargo',
     question: 'Where do you fly to?',
     answer:
-      'From Nairobi we ticket to Saudi Arabia, the UAE (Dubai), Qatar, India, Malaysia, Türkiye, France, Germany, Canada, the USA, Australia, Ethiopia, Somalia, Uganda, Tanzania and South Africa. We also book domestic flights.',
+      'From Nairobi we ticket to Saudi Arabia, the UAE (Dubai), Qatar, India, Malaysia, Türkiye, France, Germany, Canada, the USA, Australia, Ethiopia, Somalia, Uganda, Tanzania and South Africa. We also book domestic flights to most counties in Kenya, including Garissa, Wajir, Mandera, Mombasa, Kisumu, Nakuru and Eldoret.',
     status: 'confirmed',
   },
   {

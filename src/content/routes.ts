@@ -50,15 +50,16 @@ export const flightRoutes: FlightRoute[] = [
    LOCAL FLIGHTS
    -------------------------------------------------------------------------
    Domestic routes, read from the "Local Flights" panel on the agency's own
-   office wall banner (visible in the film they supplied).
+   office wall banner and confirmed by the client.
 
-   ⚠ THIS LIST IS INCOMPLETE. The banner has two columns and the camera pan
-   cuts off the right-hand one at the edge of frame. The seven below are
-   legible and certain. The remaining ones start "NAIROBI TO WA…", "NAIROBI
-   TO LAM…" and four more that cannot be read.
+   The client confirmed they ticket to MOST COUNTIES IN KENYA — the named
+   routes below are the ones printed on their banner, not the limit of what
+   they sell. That is why the section is captioned "most counties in Kenya"
+   with these listed as examples: it is accurate, and it avoids a customer
+   assuming their county is not covered because it is not on the list.
 
-   ASK THE CLIENT for the rest of the domestic destinations and add them
-   here — the section renders however many there are.
+   Add further destinations here as they are confirmed; the section renders
+   however many there are.
    ========================================================================= */
 
 export const localRoutes: FlightRoute[] = [

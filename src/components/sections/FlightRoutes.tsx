@@ -97,8 +97,17 @@ export function FlightRoutes({ tone = 'sunk' }: { tone?: 'default' | 'sunk' | 'n
                 aria-hidden="true"
                 className={cn('h-px w-8', onDark ? 'bg-aegean-300/60' : 'bg-aegean-500/50')}
               />
-              Local flights from {departureCity}
+              Local flights — most counties in Kenya
             </h3>
+            <p
+              className={cn(
+                'mt-4 max-w-xl text-[0.9375rem] leading-relaxed',
+                onDark ? 'text-porcelain-200/76' : 'text-ink-700',
+              )}
+            >
+              We ticket domestic flights from {departureCity} to most counties in Kenya. These are
+              the routes we fly most often.
+            </p>
             <ul className="mt-6 flex flex-wrap gap-2">
               {local.map((route) => (
                 <li

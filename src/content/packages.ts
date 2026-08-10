@@ -24,6 +24,7 @@ import type { TravelPackage } from './types';
 export const travelPackages: TravelPackage[] = [
   {
     slug: 'umrah-normal-august-2026',
+    badge: 'Lowest price',
     name: 'Umrah — Normal Package',
     summary:
       'Our standard Umrah departure: visa, return flight and hotel accommodation arranged, travelling as a group.',
@@ -44,6 +45,8 @@ export const travelPackages: TravelPackage[] = [
 
   {
     slug: 'umrah-vip-august-2026',
+    badge: 'Most included',
+    highlight: true,
     name: 'Umrah — VIP Package',
     summary:
       'The full arrangement: everything in the standard package plus ground transport, ziyarah tours, professional guides, Kudar breakfast and the Haramain high-speed train.',
@@ -68,6 +71,7 @@ export const travelPackages: TravelPackage[] = [
 
   {
     slug: 'umrah-full-august-2026',
+    badge: '10 days',
     name: 'Umrah — Full Package, 10 days',
     summary:
       'A ten-day Umrah covering Makkah and Madinah, with ticketing, hotels near the Haram, transport and experienced guides.',

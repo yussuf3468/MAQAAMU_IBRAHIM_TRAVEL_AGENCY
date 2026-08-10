@@ -176,8 +176,51 @@ export function buildSiteMap(mode: SiteMode = 'draft'): SiteRoute[] {
   return routes;
 }
 
-/** Header / footer navigation, in order. */
+/* =========================================================================
+   NAVIGATION
+   -------------------------------------------------------------------------
+   The header names the three things people come here for — Flights, Hajj &
+   Umrah, Cargo — rather than hiding all nine behind a single "Services"
+   link. A visitor should be able to tell from the menu alone that this
+   agency ships cargo and books flights, without scrolling or clicking.
+
+   That is also how travel agencies in this market present themselves: the
+   Nairobi agencies we looked at put Hajj & Umrah and Cargo at top level.
+
+   These three point at real service pages, so nothing new had to be built
+   and there are no duplicate URLs for search engines to weigh against each
+   other. "Services" still leads to the full list.
+
+   The footer carries the complete map, including Destinations and FAQ,
+   which do not earn a place in a header this size.
+   ========================================================================= */
+
+const FEATURED_SERVICE_LINKS = [
+  { to: '/services/air-ticketing', label: 'Flights' },
+  { to: '/services/umrah', label: 'Hajj & Umrah' },
+  { to: '/services/cargo', label: 'Cargo' },
+] as const;
+
+/** Header navigation, in order. */
 export function primaryNav(mode: SiteMode = 'draft'): { to: string; label: string }[] {
+  const routes = buildSiteMap(mode);
+  const has = (path: string) => routes.some((route) => route.path === path);
+
+  const nav: { to: string; label: string }[] = [];
+
+  if (has('/services')) nav.push({ to: '/services', label: 'Services' });
+  for (const link of FEATURED_SERVICE_LINKS) {
+    if (has(link.to)) nav.push({ to: link.to, label: link.label });
+  }
+  if (has('/packages')) nav.push({ to: '/packages', label: 'Packages' });
+  if (has('/about')) nav.push({ to: '/about', label: 'About' });
+  if (has('/contact')) nav.push({ to: '/contact', label: 'Contact' });
+
+  return nav;
+}
+
+/** Footer navigation — the complete map, including what the header omits. */
+export function footerNav(mode: SiteMode = 'draft'): { to: string; label: string }[] {
   return buildSiteMap(mode)
     .filter((route) => Boolean(route.navLabel) && route.path !== '/')
     .map((route) => ({ to: route.path, label: route.navLabel as string }));

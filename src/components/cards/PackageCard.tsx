@@ -30,19 +30,42 @@ export function PackageCard({ item, className }: PackageCardProps) {
     <Link
       to={`/packages/${item.slug}`}
       className={cn(
-        'group flex flex-col overflow-hidden border border-line bg-surface-raised',
+        'group relative flex flex-col overflow-hidden border bg-surface-raised',
         'transition-[border-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        'hover:-translate-y-1 hover:border-line-strong hover:shadow-lift',
+        'hover:-translate-y-1 hover:shadow-lift',
         'motion-reduce:hover:translate-y-0',
+        // The highlighted package carries a heavier border and a standing
+        // shadow, so the eye lands on it first without a colour shout.
+        item.highlight
+          ? 'border-aegean-500/50 shadow-raise hover:border-aegean-500'
+          : 'border-line hover:border-line-strong',
         className,
       )}
     >
-      <EditorialImage
-        image={item.image}
-        aspect="16/10"
-        hoverZoom
-        sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 92vw"
-      />
+      <div className="relative">
+        <EditorialImage
+          image={item.image}
+          aspect="16/10"
+          hoverZoom
+          sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 92vw"
+        />
+
+        {/* A fact about the package, not a sales claim — see the note on
+            `badge` in content/types.ts. */}
+        {item.badge && (
+          <span
+            className={cn(
+              'absolute top-3 left-3 z-20 rounded-[2px] px-2.5 py-1.5',
+              'font-sans text-[0.6875rem] leading-none font-semibold tracking-[0.08em] uppercase',
+              item.highlight
+                ? 'bg-aegean-600 text-white'
+                : 'bg-ink-950/85 text-porcelain-50 backdrop-blur-[2px]',
+            )}
+          >
+            {item.badge}
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex flex-wrap items-center gap-3">

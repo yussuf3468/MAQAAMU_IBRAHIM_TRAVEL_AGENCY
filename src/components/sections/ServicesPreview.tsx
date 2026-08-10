@@ -9,18 +9,26 @@ import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal';
 /* =========================================================================
    SERVICES PREVIEW (homepage)
    -------------------------------------------------------------------------
-   Shows the services flagged `featured` in the content layer, falling back
-   to the first three. Three is the ceiling on purpose: the homepage sells
-   the idea, /services carries the full list.
+   EVERY service, directly under the hero. Not three, not the featured ones
+   — all of them.
 
-   If no service has been confirmed, the whole section removes itself in
-   production rather than rendering an empty grid.
+   This section exists because of a specific failure: an earlier version
+   showed three featured services (Umrah, Hajj, air ticketing) a third of
+   the way down the page, and the agency's own reaction was that the site
+   "does not highlight what's needed" and read as though they only did Hajj
+   and Umrah. A customer wanting cargo, a visa or a hotel could not see
+   themselves anywhere.
+
+   So the whole range is now the first thing after the hero, as a compact
+   typographic grid rather than photo cards — nine photographs would be a
+   slow, heavy first screen, while nine tiles can be taken in at a glance.
+
+   Adding a tenth service to content/services.ts adds a tenth tile here
+   with no change to this file.
    ========================================================================= */
 
 export function ServicesPreview() {
-  const all = resolved.services;
-  const featured = all.filter((service) => service.featured);
-  const shown = (featured.length > 0 ? featured : all).slice(0, 3);
+  const shown = resolved.services;
 
   if (shown.length === 0) {
     return (
@@ -58,12 +66,12 @@ export function ServicesPreview() {
         </Reveal>
 
         <RevealGroup
-          stagger={0.09}
-          className="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10"
+          stagger={0.04}
+          className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4"
         >
-          {shown.map((service, index) => (
-            <RevealItem key={service.slug}>
-              <ServiceCard service={service} index={index} />
+          {shown.map((service) => (
+            <RevealItem key={service.slug} className="flex">
+              <ServiceCard service={service} variant="compact" className="w-full" />
             </RevealItem>
           ))}
         </RevealGroup>

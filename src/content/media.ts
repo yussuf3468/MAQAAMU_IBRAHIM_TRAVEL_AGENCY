@@ -35,7 +35,7 @@ export const media = {
     slot: 'home.hero',
     src: null,
     srcSet: null,
-    alt: 'Al-Masjid an-Nabawi in Madinah at dusk, pilgrims crossing the lit courtyard.',
+    alt: 'A passenger aircraft climbing away from the runway at sunset.',
     tone: 'dusk',
     focal: 'center',
   } satisfies ImageRef,
@@ -68,7 +68,7 @@ export const media = {
   homeInvitation: {
     slot: 'home.invitation',
     src: null,
-    alt: 'The Masjid al-Haram in Makkah at night beneath the Royal Clock Tower.',
+    alt: 'An aircraft waiting on the runway as the sun sets.',
     tone: 'night',
     focal: 'center',
   } satisfies ImageRef,

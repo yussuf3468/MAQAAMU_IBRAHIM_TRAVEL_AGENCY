@@ -5,14 +5,10 @@ import type { CompanyProfile } from './types';
    -------------------------------------------------------------------------
    Populated from the agency's own brochures, flyers and office signage.
 
-   ⚠ ONE THING TO CONFIRM WITH THE CLIENT — NAME SPELLING
-   The brief gave the trading name as "MAQAAMU IBRAHIM" (double A). The
-   printed brochures and the office signage read "MAQAMU IBRAHIM" (single
-   A), and the email address uses the single-A spelling too. The brief's
-   spelling is used here because it was given to us directly. Ask which is
-   correct — it appears in the page title, the wordmark, the footer, the
-   manifest and the structured data, so it is a one-line fix in this file
-   but only if we know the answer.
+   NAME SPELLING — RESOLVED. The client confirmed "MAQAAMU IBRAHIM" (double
+   A) is correct, which is what is used throughout. Some of their older
+   printed material reads "MAQAMU" with a single A; that is the outdated
+   spelling and should not be copied back in.
 
    Still outstanding: founding year, and the agency's own description of
    itself in a sentence (the summary below is assembled from the services

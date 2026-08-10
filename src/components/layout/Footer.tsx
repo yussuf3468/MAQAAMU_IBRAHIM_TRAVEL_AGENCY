@@ -10,7 +10,7 @@ import {
   liveSocialLinks,
   resolved,
 } from '@/content';
-import { primaryNav } from '@/lib/site-map';
+import { footerNav } from '@/lib/site-map';
 import { Container, Rule } from '@/components/ui/Layout';
 import { Wordmark } from './Wordmark';
 import { PendingChip } from '@/components/ui/Pending';
@@ -28,7 +28,7 @@ import { PendingChip } from '@/components/ui/Pending';
    ========================================================================= */
 
 export function Footer() {
-  const nav = primaryNav(CONTENT_MODE);
+  const nav = footerNav(CONTENT_MODE);
   const address = resolved.address;
   const hasAddress =
     address?.status === 'confirmed' &&

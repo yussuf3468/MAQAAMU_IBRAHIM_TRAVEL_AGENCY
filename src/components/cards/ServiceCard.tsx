@@ -24,7 +24,7 @@ import { PendingMark } from '@/components/ui/Pending';
 
 interface ServiceCardProps {
   service: Service;
-  variant?: 'editorial' | 'index';
+  variant?: 'editorial' | 'index' | 'compact';
   index?: number;
   className?: string;
 }
@@ -36,6 +36,48 @@ export function ServiceCard({
   className,
 }: ServiceCardProps) {
   const to = `/services/${service.slug}`;
+
+  /* 'compact' exists for the homepage grid, where all nine services are
+     shown at once. Nine image-led cards would be a wall of photographs and
+     a slow first screen; nine typographic tiles let a visitor take in the
+     entire range of the business in about three seconds, which is the
+     whole job of that section. */
+  if (variant === 'compact') {
+    return (
+      <Link
+        to={to}
+        className={cn(
+          'group flex h-full flex-col gap-3 border border-line bg-surface-raised p-6',
+          'transition-[border-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]',
+          'hover:-translate-y-0.5 hover:border-line-strong hover:shadow-raise',
+          'motion-reduce:hover:translate-y-0',
+          className,
+        )}
+      >
+        <span className="flex items-center justify-between gap-3">
+          <span className="grid size-10 place-items-center rounded-full border border-aegean-500/25 bg-aegean-500/[0.06] text-aegean-700">
+            <Icon name={service.icon} className="size-[1.125rem]" />
+          </span>
+          <ArrowUpRight
+            aria-hidden="true"
+            strokeWidth={1.5}
+            className={cn(
+              'size-4 text-ink-300 transition-[transform,color] duration-300',
+              'ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-ink-900',
+              'group-hover:-translate-y-0.5 group-hover:translate-x-0.5',
+              'motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0',
+            )}
+          />
+        </span>
+
+        <span className="mt-1 font-display-tight text-[1.25rem] leading-tight text-ink-900 transition-colors duration-300 group-hover:text-aegean-700">
+          {service.title}
+        </span>
+
+        <span className="text-[0.875rem] leading-relaxed text-ink-700">{service.summary}</span>
+      </Link>
+    );
+  }
 
   if (variant === 'index') {
     return (
